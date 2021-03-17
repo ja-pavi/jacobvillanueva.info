@@ -1,2 +1,2 @@
-# Jacob-P.-Villanueva-Portfolio
-Personal Portfolio
+# JP-Villanueva-Portfolio
+Jacob P. Villanueva Personal Website Portfolio
