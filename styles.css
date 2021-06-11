@@ -103,3 +103,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.profile-content-wrapper {
+  text-align: center;
+  justify-content: center;
+}
