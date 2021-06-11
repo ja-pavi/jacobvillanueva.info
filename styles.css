@@ -107,4 +107,6 @@ body {
 .profile-content-wrapper {
   text-align: center;
   justify-content: center;
+  padding-left: 10%;
+  padding-right: 10%;
 }
