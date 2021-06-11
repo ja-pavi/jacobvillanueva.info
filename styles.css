@@ -1,12 +1,13 @@
 body {
   margin: 0px;
-  background-color: white;
+  background-color: #f77f00;
 }
 
 h1 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 40px;
-  font-style: italic;
+  font-size: 60px;
+  text-transform: uppercase;
+  color: white;
 }
 
 p {
@@ -36,6 +37,7 @@ p {
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   font-weight: bold;
+  color: transparent;
 }
 
 .nav-wrapper > .right-side > div {
@@ -43,6 +45,7 @@ p {
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   font-weight: bold;
+  color: transparent;
 }
 
 .nav-link-wrapper {
@@ -52,7 +55,7 @@ p {
 }
 
 .nav-link-wrapper a {
-  color: black;
+  color: transparent;
   text-decoration: none;
   transition: color 0.5s;
 }
