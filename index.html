@@ -10,137 +10,39 @@
     <meta property="og:url" content="www.jacob-villanueva.dev" />
 </head>
 
-
-
 <body>
-    <div class="container">
-        <div class="nav-wrapper">
-            <div class="left-side">
-
-                <div class="nav-link-wrapper">
-                    <a href="welcome.html">Home</a>
-                </div>
-
-                <div class="nav-link-wrapper">
-                    <a href="index.html">Gallery</a>
-                </div>
-
-                <div class="nav-link-wrapper">
-                    <a href="about.html">About</a>
-                </div>
-            </div>
-
-            <div class="right-side">
-                <div class="brand">
-                    Jacob Villanueva
-                </div>
-            </div>   
+  <div class="container">
+    <div class="nav-wrapper">
+      <div class="left-side">
+        <div class="nav-link-wrapper">
+          <a href="index.html">Home</a>
         </div>
+      </div>
 
-        <div class="content-wrapper">
-            <div class="portfolio-items-wrapper">
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/portfolio.jpg);"></div>
-
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                            
-                        </div>
-
-                        <div class="subtitle">I am the Co-Founder of KarLine</div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/portfolio1.jpg);"></div>
-
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                        </div>
-
-                        <div class="subtitle">I am a freshman at University of Texas</div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/IMG_0420.jpg);"></div>
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                        </div>
-                        <div class="subtitle">I am Jacob Villanueva</div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/C5E18222-77F0-46B5-BB14-C648AB2470D0\ \(1\).jpeg);"></div>
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                        </div>
-                        <div class="subtitle">Feeding A Tiger</div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/IMG-0421.jpg);"></div>
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                        </div>
-                        <div class="subtitle">NCL Event</div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/IMG-2010.jpg);"></div>
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                        </div>
-                        <div class="subtitle">Kauai, Hawaii</div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/IMG_0616.JPG);"></div>
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                        </div>
-                        <div class="subtitle">Senior Photos</div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/IMG_1682.JPG);"></div>
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                        </div>
-                        <div class="subtitle">Riding a Horse</div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item-wrapper">
-                    <div class="portfolio-img-background" style="background-image:url(images/IMG_0861.jpg);"></div>
-                    <div class="img-text-wrapper">
-                        <div class="logo-wrapper">
-                        </div>
-                        <div class="subtitle">Trinity Football</div>
-                    </div>
-                </div>
-
-            </div>
+      <div class="right-side">
+        <div class="brand">
+          Jacob Paul Villanueva
         </div>
+      </div>
     </div>
-</body>
-<script>
-    const portfolioItems = document.querySelectorAll('.portfolio-item-wrapper')
 
-    portfolioItems.forEach(portfolioItem => {
-        portfolioItem.addEventListener('mouseover', () => {
-            console.log(portfolioItem.childNodes[1].classList);
-            portfolioItem.childNodes[1].classList.add('img-darken');
-        })
-        portfolioItem.addEventListener('mouseout', () => {
-            portfolioItem.childNodes[1].classList.remove('img-darken');
-        })
-    })
-</script>
+    <div class="content-wrapper">
+      <div class="two-column-wrapper">
+        <div class="profile-image-wrapper">
+          <img src="images/profile.jpg" alt="">
+        </div>
+
+        <div class="profile-content-wrapper">
+          <h1>I am Jacob P. Villanueva</h1>
+          <p>
+          </p>
+
+          <p>I am a Computer Science Student @ UT</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
 </html>

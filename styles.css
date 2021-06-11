@@ -1,5 +1,17 @@
 body {
   margin: 0px;
+  background-color: #ffb05f;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 50px;
+  font-style: italic;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }
 
 .container {
@@ -21,7 +33,16 @@ body {
 .nav-wrapper > .left-side > div {
   margin-right: 20px;
   font-size: 0.9em;
+  font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
+  font-weight: bold;
+}
+
+.nav-wrapper > .right-side > div {
+  font-size: 0.9em;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .nav-link-wrapper {
@@ -31,7 +52,7 @@ body {
 }
 
 .nav-link-wrapper a {
-  color: #8a8a8a;
+  color: black;
   text-decoration: none;
   transition: color 0.5s;
 }
