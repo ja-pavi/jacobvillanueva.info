@@ -25,7 +25,8 @@ body {
   font-family: "RestoraThinItalic";
   font-size: 15px;
   text-align: center;
-  margin-top: 500px;
+  margin-top: 300px;
+  margin-bottom: 300px;
 }
 
 .button {
@@ -58,7 +59,7 @@ h4 {
 
 h1 {
   font-family: "RestoraThinItalic";
-  font-size: 3em;
+  font-size: 1.2em;
   color: white;
   text-shadow: 3px 0 saddlebrown;
   letter-spacing: 1px;
@@ -84,7 +85,7 @@ a,
 li {
   color: #ffa500;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 0.8em;
   text-align: center;
 }
 
