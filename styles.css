@@ -97,7 +97,21 @@ li {
 }
 
 /* grid testing */
-
+.projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+.things {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.link {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
 body img {
-  width: fit-content;
+  width: 80px;
 }
