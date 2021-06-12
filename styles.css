@@ -20,11 +20,12 @@ li {
 
 /* base styles */
 body {
-  background: var(--primary);
+  background: #222;
   overflow-x: hidden;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "RestoraThinItalic";
   font-size: 15px;
   text-align: center;
+  margin-top: 500px;
 }
 
 .button {
@@ -32,31 +33,36 @@ body {
   border: 2px solid var(--secondary);
   color: var(--primary);
   padding: 6px 12px;
-  border-radius: 20px;
-  text-transform: uppercase;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
   display: inline-block;
 }
 
 .button:hover {
-  color: #222;
-  background: var(--secondary);
+  color: var(--secondary);
+  background: var(--primary);
 }
 
 /* fonts */
+@font-face {
+  font-family: "RestoraThinItalic";
+  src: url("assets/fonts/RestoraThinItalic.otf");
+}
+
 h1,
 h2,
 h3,
 h4 {
-  font-family: Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
+  font-family: "RestoraThinItalic";
   text-align: center;
 }
 
 h1 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "RestoraThinItalic";
   font-size: 3em;
   color: white;
+  text-shadow: 3px 0 saddlebrown;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 h2 {
@@ -80,6 +86,13 @@ li {
   font-weight: bold;
   font-size: 1.2em;
   text-align: center;
+}
+
+.welcome-text a {
+  color: white;
+  text-shadow: 3px 0 saddlebrown;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 /* mobile styles */
