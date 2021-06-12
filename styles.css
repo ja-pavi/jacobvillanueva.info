@@ -63,7 +63,7 @@ h1 {
   font-family: "RestoraThinItalic";
   font-size: 1.2em;
   color: white;
-  text-shadow: 0.9px 0 rgba(255, 255, 255, 1);
+  text-shadow: 1px 0 rgba(255, 255, 255, 1);
   letter-spacing: 1px;
   font-weight: bold;
 }
@@ -93,7 +93,7 @@ li {
 
 .welcome-text a {
   color: white;
-  text-shadow: 0.9px 0 rgba(255, 255, 255, 1);
+  text-shadow: 1px 0 rgba(255, 255, 255, 1);
   letter-spacing: 1px;
   font-weight: bold;
 }
