@@ -79,6 +79,7 @@ li {
   color: #ffa500;
   font-weight: bold;
   font-size: 1.5em;
+  text-align: center;
 }
 
 /* mobile styles */
@@ -96,25 +97,3 @@ li {
 }
 
 /* grid testing */
-
-.projects {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.projects a {
-  text-align: center;
-}
-
-.things {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.link {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
