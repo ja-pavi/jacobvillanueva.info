@@ -55,17 +55,17 @@ h4 {
 
 h1 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 10em;
+  font-size: 5em;
   color: white;
 }
 
 h2 {
-  font-size: 4em;
+  font-size: 2em;
   color: #222;
 }
 
 h3 {
-  font-size: 3em;
+  font-size: 1.8em;
   color: #be5504;
 }
 
@@ -78,7 +78,7 @@ a,
 li {
   color: #ffa500;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1.2em;
   text-align: center;
 }
 
