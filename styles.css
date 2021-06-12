@@ -22,7 +22,7 @@ li {
 body {
   background: #222;
   overflow-x: hidden;
-  font-family: "RestoraThinItalic";
+  font-family: "Vollkorn";
   font-size: 12px;
   text-align: center;
   margin-top: 250px;
@@ -38,33 +38,33 @@ body {
   padding: 6px 12px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
   display: inline-block;
+  transition: all 0.2s linear;
 }
 
 .button:hover {
   color: var(--secondary);
   background: var(--primary);
+  border: 2px solid var(--primary);
 }
 
 /* fonts */
 @font-face {
-  font-family: "RestoraThinItalic";
-  src: url("assets/fonts/RestoraThinItalic.otf");
+  font-family: "Vollkorn";
+  src: url("assets/fonts/Vollkorn-BoldItalic.ttf");
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: "RestoraThinItalic";
+  font-family: "Vollkorn";
   text-align: center;
 }
 
 h1 {
-  font-family: "RestoraThinItalic";
+  font-family: "Vollkorn";
   font-size: 1.2em;
   color: white;
-  text-shadow: 1px 0 rgba(255, 255, 255, 1);
-  letter-spacing: 1px;
   font-weight: bold;
 }
 
@@ -93,8 +93,7 @@ li {
 
 .welcome-text a {
   color: white;
-  text-shadow: 1px 0 rgba(255, 255, 255, 1);
-  letter-spacing: 1px;
+
   font-weight: bold;
 }
 
