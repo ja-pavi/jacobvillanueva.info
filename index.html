@@ -2,42 +2,81 @@
 <html>
 <head>
     <meta charset="utf-8"  />
-    <title>Jacob Villanueva Portfolio</title>   
-    <meta name="viewport" content=width=device-width, intial-scale=1.0>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="og:title" content="Jacob Villanueva Portfolio" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1570197679264-d37000973d4a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=935&q=80"/>
     <meta property="og:type" content="portfolio" />
     <meta property="og:url" content="www.jacob-villanueva.dev" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Jacob Villanueva Portfolio</title>   
 </head>
-
 <body>
-  <div class="container">
-    <div class="nav-wrapper">
-      <div class="left-side">
-        <div class="nav-link-wrapper">
-          <a href="index.html">Home</a>
-        </div>
-      </div>
 
-      <div class="right-side">
-        <div class="brand">
-          Jacob Paul Villanueva
-        </div>
-      </div>
-    </div>
+<nav class="site-nav grid">
+    <H1>I'm Jacob <br />Villanueva</H1>
+  <ul>
+    <li><a href="#portfolio">Portfolio</a></li> 
+    <li><a href="#skills">Skills</a></li> 
+    <li><a href="#contact">Contact</a></li>
 
-    <div class="content-wrapper">
-        <div class="profile-image-wrapper">
-          <img src="images/profile.jpg" alt="">
-        </div>
-
-        <div class="profile-content-wrapper">
-          <h1>I'm Jacob P. Villanueva</h1>
-          <p>I am a Computer Science Student @ UT</p>
-        </div>
-    </div>
+  </ul>
+</nav>
+<section id="welcome" class="grid">
+   <div class="welcome-text">
+     <h2>High Frequency Trading<br />& Artificial Intelligence</h2>
+     <p class="leading">Placeholder Text</p>
+     <a href="#portfolio" class="button">View my work</a>
+   </div>
+</section>
+<section id="portfolio">
+  <h3>Some of my Projects</h3>
+  <div class="projects grid">
+    <a href="#">
+      <img src="assets/placeholder-images-image_large.png" alt="space race image">
+      <h4>Space Race Game</h4>
+    </a>
+    <a href="#">
+      <img src="assets/placeholder-images-image_large.png" alt="planet boy image">
+      <h4>Planet Boy API</h4>
+    </a>
+    <a href="#">
+      <img src="assets/placeholder-images-image_large.png" alt="captain cosmo image">
+      <h4>Captain Cosmo Blog</h4>
+    </a>
   </div>
+</section>
+<section id="skills">
+  <h3>Things I Can Do</h3>
+  <ul class="things grid">
+    <li>
+      <img src="assets/placeholder-images-image_large.png" alt="comet">
+      <h4>JavaScript</h4>
+    </li>
+    <li>
+      <img src="assets/placeholder-images-image_large.png" alt="comet">
+      <h4>React</h4>
+    </li>
+    <li>
+      <img src="assets/placeholder-images-image_large.png" alt="comet">
+      <h4>Firebase</h4>
+    </li>
+    <li>
+      <img src="assets/placeholder-images-image_large.png" alt="comet">
+      <h4>Flutter</h4>
+    </li>
+  </ul>
+
+
+</section>
+<footer>
+  <h3>Links</h3>
+  <div class="link grid">
+      <li><a href="#"><img src="assets/placeholder-images-image_large.png" alt="linkedin"></a></li>
+      <li><a href="#"><img src="assets/placeholder-images-image_large.png" alt="github"></a></li>
+  </div>
+</footer>
+
 
 </body>
 
