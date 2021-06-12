@@ -97,3 +97,7 @@ li {
 }
 
 /* grid testing */
+
+body img {
+  width: fit-content;
+}
