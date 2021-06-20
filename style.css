@@ -20,14 +20,12 @@ li {
 
 /* base styles */
 body {
-  background: #222;
+  background: #111;
   overflow-x: hidden;
-  font-family: "Vollkorn";
-  font-size: 12px;
-  text-align: center;
-  margin-top: 250px;
+  font-size: 80px;
+  margin-top: 425px;
   margin-bottom: 250px;
-  padding-left: 20px;
+  padding-left: 100px;
   padding-right: 20px;
 }
 
@@ -49,23 +47,24 @@ body {
 
 /* fonts */
 @font-face {
-  font-family: "Vollkorn";
-  src: url("assets/fonts/Raleway-Light.ttf");
+  font-family: "B612";
+  src: url("assets/fonts/Bogart-Regular-trial.ttf");
 }
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: "Vollkorn";
-  text-align: center;
+  font-family: "B612";
   letter-spacing: 1px;
+  color: #fff;
+  background: linear-gradient(90deg, #ff512f 20%, #f09819 40%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h1 {
-  font-family: "Vollkorn";
   font-size: 1.2em;
-  color: white;
   font-weight: bold;
 }
 
@@ -93,8 +92,9 @@ li {
 }
 
 .welcome-text a {
-  color: white;
-  letter-spacing: 1px;
+  font-family: "B612";
+  font-size: 20px;
+  color: black;
   font-weight: bold;
 }
 
