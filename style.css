@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   background: #111;
-  font-family: "Roboto", sans-serif;
+  font-family: "Biotif", sans-serif;
   height: 100vh;
   overflow: hidden;
   width: 100vw;
@@ -44,16 +44,22 @@ nav .menu-item {
 
 nav .menu-text,
 nav .menu-text a {
-  font-size: 1em;
+  font-size: 1.1em;
   color: white;
   text-decoration: none;
+  padding-bottom: 10px;
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  transition: color 0.1s ease-out;
+  transition: color 0.5s linear;
+  border-bottom: 3px solid transparent;
+  transition: border-bottom 0.5s linear;
+  transition: padding-bottom 0.2s ease-out;
   text-align: center;
 }
 
 nav .menu-text a:hover {
   color: rgba(255, 255, 255, 0.5);
+  border-bottom: 3px solid #f77f00;
+  padding-bottom: 5px;
 }
 
 #sub-menu-holder {
@@ -178,6 +184,10 @@ nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
 .menu-item:hover ~ #sub-menu-container #sub-menu-holder {
   transition: transform 0.25s ease-out, opacity 0.25s ease-out,
     clip-path 0.25s ease-out;
+}
+@font-face {
+  font-family: "Biotif";
+  src: url(assets/fonts/Biotif-Regular.ttf);
 }
 
 @keyframes clipPath {
