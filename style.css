@@ -14,12 +14,6 @@ body {
   width: 100vw;
 }
 
-.middle {
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
-}
-
 nav {
   width: var(--menu-width);
   display: flex;
@@ -410,7 +404,7 @@ nav
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 6em;
+  font-size: 4em;
   color: #fff;
   background: linear-gradient(
     271deg,
