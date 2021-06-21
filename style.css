@@ -14,13 +14,19 @@ body {
   width: 100vw;
 }
 
+.middle {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
 nav {
   width: var(--menu-width);
   display: flex;
   transform-style: preserve-3d;
   justify-content: space-evenly;
   position: relative;
-  z-index: 2;
+  z-index: 500;
   margin: 0px auto;
   perspective: 2000px;
   flex-wrap: wrap;
@@ -188,6 +194,8 @@ nav .menu-item:nth-of-type(4):hover ~ #sub-menu-container #sub-menu-holder {
 @font-face {
   font-family: "Biotif";
   src: url(assets/fonts/Biotif-Regular.ttf);
+  font-family: "Bogart";
+  src: url(assets/fonts/Bogart-Regular-trial.ttf);
 }
 
 @keyframes clipPath {
@@ -393,5 +401,31 @@ nav
   letter-spacing: 1px;
 }
 #info-box a:hover {
-  color: rgba(255, 255, 255, 0.5);
+  color: #f77f00;
+  font-size: 1.27em;
+}
+
+.middle h1 {
+  padding-top: 10%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 6em;
+  color: #fff;
+  background: linear-gradient(
+    271deg,
+    #a0e9ff 30%,
+    #a162e8 50%,
+    #f093b0 70%,
+    #edca85 94%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.middle h2 {
+  align-items: center;
+  text-align: center;
+  font-size: 2em;
+  color: rgba(0, 0, 0, 0.4);
 }
