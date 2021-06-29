@@ -419,7 +419,6 @@ nav
 .body h2 {
   font-size: 2em;
   color: rgba(255, 255, 255, 0.9);
-  max-width: 700px;
   padding: 0;
 }
 
@@ -427,11 +426,25 @@ nav
   padding: 140px 6em 270px;
   gap: 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: ;
 }
-.right img {
+.grid-container img {
   margin: auto;
-  width: 50em;
+  width: 30em;
   border: 10px solid white;
-  border-radius: 50px;
+  border-radius: 500px;
+  transition: 1s;
+}
+.grid-container h2 {
+  text-align: center;
+  transition: 1s;
+}
+
+.grid-container h2:hover {
+  color: #111;
+}
+
+.grid-container img:hover {
+  border: 10px solid #f77f00;
+  width: 31em;
 }
