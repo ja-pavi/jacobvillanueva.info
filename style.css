@@ -430,8 +430,16 @@ nav
 }
 
 .grid-container {
-  padding: 140px 6em 270px;
+  padding: 140px 6em 50px;
   gap: 50px;
+  display: grid;
+  grid-template-columns: ;
+}
+
+.grid-containerbottom {
+  text-align: center;
+  padding: 0px 6em 50px;
+  gap: 0px;
   display: grid;
   grid-template-columns: ;
 }
@@ -441,6 +449,10 @@ nav
   border: 10px solid white;
   border-radius: 500px;
   transition: 1s;
+}
+
+.grid-containerbottom img {
+  width: 90px;
 }
 .grid-container h2 {
   text-align: center;
@@ -452,6 +464,6 @@ nav
 }
 
 .grid-container img:hover {
-  border: 10px solid #f77f00;
+  border: 10px solid #bf5700;
   width: 31em;
 }
