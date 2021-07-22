@@ -399,7 +399,7 @@ nav
 }
 #info-box a:hover {
   color: lightgray;
-  font-size: 1.27em;
+  font-size: 1.5em;
 }
 
 .body h1 {
@@ -427,6 +427,11 @@ nav
   font-size: 1.5em;
   color: rgba(255, 255, 255, 0.1);
   padding: 0;
+  transition: 1s;
+}
+
+.body h3:hover {
+  color: rgba(255, 255, 255, 0);
 }
 
 .grid-container {
@@ -454,6 +459,7 @@ nav
 .grid-containerbottom img {
   width: 90px;
 }
+
 .grid-container h2 {
   text-align: center;
   transition: 1s;
