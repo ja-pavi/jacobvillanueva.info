@@ -434,30 +434,8 @@ nav
   color: rgba(255, 255, 255, 0);
 }
 
-.grid-container {
-  padding: 50px 6em 0px;
-  gap: 50px;
-  display: grid;
-  grid-template-columns: ;
-}
-
-.grid-containerbottom {
-  text-align: center;
-  padding: 0px 6em 0px;
-  gap: 0px;
-  display: grid;
-  grid-template-columns: ;
-}
-.grid-container img {
-  margin: auto;
-  width: 22.5em;
-  border: 10px solid white;
-  border-radius: 500px;
-  transition: 1s;
-}
-
 .grid-containerbottom img {
-  width: 80px;
+  width: 5px;
 }
 
 .grid-container h2 {
@@ -469,7 +447,4 @@ nav
   color: #111;
 }
 
-.grid-container img:hover {
-  border: 10px solid #bf5700;
-  
-}
+
