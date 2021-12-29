@@ -22,7 +22,7 @@ body {
 }
 
 h1 {
-    font-size: 1em;
+    font-size: .9em;
     color: rgba(255, 255, 255, 0.1);
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
@@ -30,7 +30,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1.5em;
+    font-size: 1em;
     color: rgba(255, 255, 255, 1);
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
@@ -42,14 +42,14 @@ mark.dull {
 }
 
 h3 {
-    font-size: 1.5em;
+    font-size: 1em;
     color: #ffb86c;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
 }
 
 a {
-    font-size: 1em;
+    font-size: .9em;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     color: rgba(255, 255, 255, 0.1);
     font-weight: 400;
