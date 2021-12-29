@@ -1,11 +1,6 @@
 body {
-    background-color: #0b090a;
+    background-color: #252525;
     overflow: hidden;
-}
-
-.title {
-    display: flex;
-    flex-direction: column;
 }
 
 .list {
@@ -16,24 +11,60 @@ body {
     width: fit-content;
     margin: auto;
   }
+
+.socials {
+    display: flex;
+    justify-content: center;
+}
+
+.socials {
+    flex-direction: row;
+}
+
 h1 {
-    font-size: .77em;
-    color: white;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.1);
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     text-align: center;
 }
 
 h2 {
-    font-size: 1em;
-    color: white;
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 1);
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
-    transition: 2s ease;
+}
+
+mark.dull {
+    color: rgba(255, 255, 255, 0.1);
+    background-color: transparent;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #ffb86c;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+}
+
+a {
+    font-size: 1em;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: rgba(255, 255, 255, 0.1);
+    font-weight: 400;
+    margin: 10px;
+    animation-duration: 3s ease;
+    text-decoration: none;
+    
 }
 
 h2:hover {
     animation-duration: 10s;
     color: #ffb86c;
-    font-size: 1.0em;
+}
+
+a:hover {
+    color: rgba(255, 255, 255, 0.3);
+    
 }
