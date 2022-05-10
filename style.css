@@ -1,5 +1,5 @@
 body {
-    background-color: #252525;
+    background-color: #323437;
     overflow: hidden;
 }
 
@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 85vh;
     width: fit-content;
     margin: auto;
   }
@@ -17,54 +17,84 @@ body {
     justify-content: center;
 }
 
-.socials {
-    flex-direction: row;
-}
 
 h1 {
-    font-size: .9em;
-    color: rgba(255, 255, 255, 0.1);
+    font-size: 1em;
+    color: #646669;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
     text-align: center;
 }
 
 h2 {
-    font-size: 1em;
+    font-size: 3em;
     color: rgba(255, 255, 255, 1);
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
 }
 
-mark.dull {
-    color: rgba(255, 255, 255, 0.1);
+mark.left {
+    color: rgba(255, 255, 255, 1);
     background-color: transparent;
 }
 
+mark.equals {
+    color: rgba(255, 255, 255, 1);
+    background-color: transparent;
+}
+
+mark.equals:hover {
+    transition: color 1.5s ease;
+    color: #457b9d;
+}
+
 h3 {
-    font-size: 1em;
-    color: #ffb86c;
+    font-size: 2.5em;
+    color: #457b9d;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+}
+
+button {
+    margin-top: 2em;
+    font-size: 2em;
+    width: auto;
+    color: rgba(255, 255, 255, 0.05);
+    background-color: transparent;
     font-weight: 400;
+    animation-duration: 1s ease;
+    text-align: center;
+    border: none;
 }
 
-a {
-    font-size: .9em;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    color: rgba(255, 255, 255, 0.1);
-    font-weight: 400;
-    margin: 10px;
-    animation-duration: 3s ease;
-    text-decoration: none;
-    
-}
-
-h2:hover {
-    animation-duration: 10s;
-    color: #ffb86c;
-}
-
-a:hover {
+button:hover {
+    transition: color 1.5s ease;
     color: rgba(255, 255, 255, 0.3);
-    
+}
+
+.problem input{
+    max-width: 3em;
+    outline-width: 0ch;
+    background-color: rgba(255, 255, 255, 0.025);
+    padding-top: 10px;
+    border: 0px solid #555;outline: none;
+
+  }
+
+  #inputField { 
+    font-size: 1em;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+  }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

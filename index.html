@@ -16,21 +16,27 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1640458348210-6c46cc136f18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
   </head>
 
-  <!--CSS Styles -->
   <link rel="stylesheet" href="style.css" />
 
   <body>
         <div class="list">
-          <h3>2022</h3>
-          <h2><mark class ="dull"></mark>Monte Carlo Options Pricing Visualization</h2>
-          <h2><mark class ="dull"></mark>Arbitrage Opportunities in Sports Betting</h2>
-          <h2><mark class ="dull"></mark>D. E. Shaw's Undecipherable Ghost Patterns</h2>
-          <h2><mark class ="dull"></mark>Bayes Theorem Usage in Quantative Finance</h2>
-          <h2><mark class ="dull"></mark>Stochastic Processes in Financal Markets<h2>  
-          <h1>Written by Jacob Villanueva</h1>
-          <div class= "socials">
-          <a href="https://www.linkedin.com/in/jacob-villanueva/">LinkedIn</a>
-          <a href="https://github.com/ja-pavi">GitHub</a>
+          <h3><span id="timer">120</span></h3>
+          <div class="problem">
+            <h2><mark class ="left">number + number</mark>
+            <mark class ="equals"> = </mark>
+            <input input type = "number" autocomplete="off" name="answer" id="inputField" type="text"/></h2> 
+          </div>
+          <button onclick="window.location.reload();">Restart</button>
           </div>
         </div>
   </body>
+
+  <script type="text/javascript">
+        var time = 120;
+        var interval = setInterval(function(){
+          time--;
+        document.getElementById("timer").textContent = time;
+        if(time <= 0)
+            clearInterval(interval);
+        },1000);
+    </script>
