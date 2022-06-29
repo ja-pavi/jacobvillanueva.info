@@ -4,7 +4,50 @@
       }
 
 .share img {
-        padding: 0.75rem;
-        width: 1.50rem;
-        height: 1.50rem;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: 2rem;
+        height: 2rem;
       }
+
+.share a span{
+        font-size: 0.75rem;
+        color:white;
+        display:flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+      }
+
+bottom {
+        display: grid;
+        grid-template-columns: 1fr 0.5in [start] 1.25in 5in 1.25in [end] 0.5in 1fr;
+      
+        padding: 0.5in 0;
+      
+        background: linear-gradient(110deg, #457b9d 60%, #2a6f97 60%);
+      }
+      
+bottom * { grid-column:  start / end; }
+      
+@media (max-width: 8.5in) {
+        
+        bottom { grid-template-columns: 1fr 5% [start] 15% 60% 15% [end] 5% 1fr; }
+    
+      }
+
+.links {
+  background: hsla(355, 78%, 56%, 1);
+}
+    
+.links h1 { 
+  display: flex; 
+  justify-content: center;
+}
+
+.links h1 {
+  margin-bottom: 1.2rem;
+  color: white;
+  font: 400 1.5rem/1.2 "Lato"; color: white;
+}
