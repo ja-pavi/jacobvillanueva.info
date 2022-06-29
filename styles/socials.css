@@ -1,0 +1,10 @@
+.share {
+        display: flex;
+        justify-content: center;
+      }
+
+.share img {
+        padding: 0.75rem;
+        width: 1.50rem;
+        height: 1.50rem;
+      }
