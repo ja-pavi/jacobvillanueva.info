@@ -1,0 +1,25 @@
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.home img {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 6rem;
+    height: 6rem;
+  }
+
+.home a span{
+    font-size: 0.75rem;
+    color:black;
+    font-weight: 400;
+    display:flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+  }
+
+
+

@@ -1,9 +1,14 @@
-h2, p {
+h2 {
     margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2.4rem;
+}
+
+p {
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
 }
     
-h1           { font: 700 2.0rem/1.2 "Lato"; color: hsl(000, 0%, 33%); }
+h1           { font: 700 2.0rem/1.2 "Lato"; color: hsl(000, 0%, 20%); }
 h2           { font: 400 1.5rem/1.2 "Lato"; color: hsl(000, 0%, 50%); }
 time         { font: 700 1.0rem/1.2 "Lato"; color: hsla(219, 37%, 17%, 0.75); }
 h3           { font: 700 1.0rem/1.2 "Lato"; color: hsl(215, 50%, 23%); }
@@ -11,7 +16,7 @@ p            { font: 400 1.0rem/2 "Lato"; color: hsl(000, 0%, 33%); }
 figcaption p { font: 400 1.0rem/1.5 "Lato"; color: hsl(000, 0%, 83%); }
 span         { font: 400 1.0rem/1.5 "Lato"; color: hsl(000, 0%, 83%); }
 
-.title-highlight { box-shadow: inset 0 -0.25em hsla(355, 78%, 56%, 0.8);}
+.title-highlight { box-shadow: inset 0 -0.25em hsla(355, 78%, 56%, 1);}
 
 .text-highlight {
     box-shadow: inset 0 -0.25em hsla(203, 39%, 44%, 1);

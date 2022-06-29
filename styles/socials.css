@@ -1,10 +1,11 @@
-.share {
+.Other {
         display: flex;
         justify-content: center;
+        align-items: center;
       }
 
-.share img {
-        padding-top: 2rem;
+.Other img {
+        padding-top: 1rem;
         padding-bottom: 1rem;
         padding-left: 2rem;
         padding-right: 2rem;
@@ -12,7 +13,29 @@
         height: 2rem;
       }
 
-.share a span{
+.Other a span{
+        font-size: 0.75rem;
+        color:white;
+        display:flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+      }
+
+.Socials {
+        display: flex;
+        justify-content: center;
+      }
+
+.Socials img {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: 2rem;
+        height: 2rem;
+      }
+
+.Socials a span{
         font-size: 0.75rem;
         color:white;
         display:flex;
@@ -37,6 +60,8 @@ bottom * { grid-column:  start / end; }
     
       }
 
+
+
 .links {
   background: hsla(355, 78%, 56%, 1);
 }
@@ -47,7 +72,7 @@ bottom * { grid-column:  start / end; }
 }
 
 .links h1 {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
   color: white;
   font: 400 1.5rem/1.2 "Lato"; color: white;
 }
