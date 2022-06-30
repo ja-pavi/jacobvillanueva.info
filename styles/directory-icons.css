@@ -1,0 +1,22 @@
+.Directory-Documents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.Directory-Documents img {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+.Directory-Documents a span{
+    font-size: 0.75rem;
+    color: hsl(000, 0%, 20%);
+    display:flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+  }

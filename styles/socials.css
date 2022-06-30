@@ -1,10 +1,10 @@
-.Other {
+.Documents {
         display: flex;
         justify-content: center;
         align-items: center;
       }
 
-.Other img {
+.Documents img {
         padding-top: 1rem;
         padding-bottom: 1rem;
         padding-left: 2rem;
@@ -13,7 +13,7 @@
         height: 2rem;
       }
 
-.Other a span{
+.Documents a span{
         font-size: 0.75rem;
         color:white;
         display:flex;
@@ -33,7 +33,9 @@
         padding-right: 2rem;
         width: 2rem;
         height: 2rem;
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(147deg) brightness(106%) contrast(101%);
       }
+
 
 .Socials a span{
         font-size: 0.75rem;

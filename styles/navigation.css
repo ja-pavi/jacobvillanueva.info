@@ -1,0 +1,18 @@
+header {
+    display: grid;
+    background-color: white;
+}
+
+header * { grid-column: start / end; }
+
+.Directory-Documents {
+    float: right;
+}
+
+nav a {
+    transition: color 0.2s linear;
+}
+
+nav li :hover {
+    color: #415a77;
+}
