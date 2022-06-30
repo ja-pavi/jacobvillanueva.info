@@ -1,7 +1,26 @@
-header {
-    display: grid;
+.Navigation-Documents a h1{
+    font-size: 2rem;
+    color: hsl(000, 0%, 20%);
+  }
+
+.Navigation-Documents a {
+    padding: 1rem;
+  }
+
+h1 {
+    box-shadow: inset 0 -0.25em hsla(355, 78%, 56%, 1);
 }
 
-.Directory-Documents {
-    float: right;
-}
+  .Navigation-Documents {
+    display: flex;
+  }
+
+.Navigation-Documents img {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    right: 1rem;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
