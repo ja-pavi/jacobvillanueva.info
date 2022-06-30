@@ -20,9 +20,17 @@
   }
 
 .Directory-Documents a span{
+  height: 1rem;
     font-size: 0.75rem;
     color: hsl(000, 0%, 20%);
     display:flex;
     justify-content: center;
     padding-bottom: 1rem;
+    align-items: center;
+  }
+
+.Directory-Documents a span p{
+    font-size: 1rem;
+    color: hsl(000, 0%, 20%);
+    box-shadow: inset 0 -0.25em hsl(215, 50%, 23%);
   }

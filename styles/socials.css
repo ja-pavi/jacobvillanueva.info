@@ -20,6 +20,60 @@
         justify-content: center;
         padding-bottom: 1rem;
       }
+  
+.Copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7rem;
+  background: linear-gradient(130deg, #1e3c72, #24243e);
+    background-size: 200% 200%;
+
+    -webkit-animation: Animation 5s ease infinite;
+    -moz-animation: Animation 5s ease infinite;
+    animation: Animation 5s ease infinite;
+}
+
+.Copyright div {
+  display: flex;
+  justify-content: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.Copyright h2 {
+  color: white;
+  font-size: 1.2rem;
+  transition: color 2s ease;
+}
+
+.Copyright h2:hover {
+  color: grey;
+}
+
+@-webkit-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@-moz-keyframes Animation {
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+@keyframes Animation { 
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+
+@media (max-width: 500px) {
+    
+  .Copyright h2 {
+      font-size: 1rem;
+  }
+
+}
 
 .Socials {
         display: flex;
@@ -51,7 +105,13 @@ bottom {
       
         padding: 0.5in 0;
       
-        background: linear-gradient(110deg, #457b9d 60%, #2a6f97 60%);
+        background: linear-gradient(130deg, #232526, #414345 );
+        background-size: 200% 200%;
+
+        -webkit-animation: Animation 5s ease infinite;
+        -moz-animation: Animation 5s ease infinite;
+        animation: Animation 5s ease infinite;
+
       }
       
 bottom * { grid-column:  start / end; }
@@ -65,12 +125,18 @@ bottom * { grid-column:  start / end; }
 
 
 .links {
-  background: hsla(355, 78%, 56%, 1);
+  background: linear-gradient(130deg, hsla(355, 78%, 56%, 1), #a73737 );
+    background-size: 200% 200%;
+
+    -webkit-animation: Animation 5s ease infinite;
+    -moz-animation: Animation 5s ease infinite;
+    animation: Animation 5s ease infinite;
 }
     
 .links h1 { 
   display: flex; 
   justify-content: center;
+  box-shadow: none;
 }
 
 .links h1 {
