@@ -70,7 +70,8 @@
 @media (max-width: 500px) {
     
   .Copyright h2 {
-      font-size: 1rem;
+      font-size: 0.9rem;
+      padding: 0rem;
   }
 
 }
@@ -97,6 +98,20 @@
         display:flex;
         justify-content: center;
         padding-bottom: 1rem;
+      }
+
+@media (max-width: 500px) {
+    
+        .Socials img {
+            padding: 1rem;
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .Socials a span{
+          display: none;
+        }
+      
       }
 
 bottom {
