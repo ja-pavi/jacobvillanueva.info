@@ -1,6 +1,75 @@
+h1 {
+    margin-top: 1.2rem;
+}
+
 h2 {
     margin-top: 1.2rem;
     margin-bottom: 2.4rem;
+}
+
+hr {
+    margin-bottom: 2.5em;
+    padding-bottom: 0.1em;
+    background-color: hsl(000, 0%, 20%);
+    border: none;
+}
+
+emT {
+    margin-right: 0.5rem;
+}
+/* 
+- - -
+External style sheets in use:
+- - -
+- base.css
+https://codepen.io/gymnasium/pen/eYpRxKE
+- flex-type.css
+https://codepen.io/gymnasium/pen/LYpzVqr
+- focus.css
+https://codepen.io/gymnasium/pen/GRpMJzL
+- viewport.css
+https://codepen.io/gymnasium/pen/LYpzVar
+- - -
+*/
+
+.has-dropcap:first-letter {
+    float: left;
+    font-size: 6rem;
+    line-height: 0.65;
+    margin: 0.15em 0.1em 0.1em 0;
+  }
+  
+  .dropcap {
+    font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+    background: #303030;
+    color: #FDF9F2;
+    float: left;
+    font-size: 6rem;
+    line-height: 1;
+    margin: 0.1em 0.1em 0.2em 0;
+    padding: 0.1em;
+  }
+  .dropcap:before,
+  .dropcap:after {
+    content: "";
+    display: block;
+  }
+  .dropcap:before {
+    margin-top: -0.2em;
+  }
+  .dropcap:after {
+    margin-bottom: -0.15em;
+  }
+  
+  /* https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html */
+  .sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0); 
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap; 
+    width: 1px;
 }
 
 p {
@@ -8,19 +77,14 @@ p {
     margin-bottom: 0.6rem;
 }
     
-h1           { font: 700 2.0rem/1.2 "Lato"; color: hsl(000, 0%, 20%); }
-h2           { font: 400 1.5rem/1.2 "Lato"; color: hsl(000, 0%, 50%); }
-time         { font: 700 1.0rem/1.2 "Lato"; color: hsla(219, 37%, 17%, 0.75); }
-h3           { font: 700 1.0rem/1.2 "Lato"; color: hsl(215, 50%, 23%); }
-p            { font: 400 1.0rem/2 "Lato"; color: hsl(000, 0%, 33%); }
-figcaption p { font: 400 1.0rem/1.5 "Lato"; color: hsl(000, 0%, 83%); }
-span         { font: 400 1.0rem/1.5 "Lato"; color: hsl(000, 0%, 83%); }
-
-.title-highlight { box-shadow: inset 0 -0.25em hsla(355, 78%, 56%, 1);}
-
-.text-highlight {
-    box-shadow: inset 0 -0.25em hsla(203, 39%, 44%, 1);
-}
+h1           { font: 700 2.0rem/1.2 "Lato"; color: white; }
+h2           { font: 400 1.0rem/1.0 "Lato"; color: hsl(000, 0%, 90%); }
+emT          { font: 400 1.0rem/1.0 "Lato"; color: hsl(000, 0%, 60%); font-style: italic; }
+time         { font: 700 1.0rem/1.2 "Lato"; color: hsl(000, 0%, 70%); }
+h3           { font: 700 1.0rem/1.2 "Lato"; color: hsl(000, 0%, 100%); }
+p            { font: 400 0.9rem/2 "Lato"; color: hsl(000, 0%, 100%); }
+figcaption p { font: 400 1.0rem/1.5 "Lato"; color: hsl(000, 0%, 100%); }
+span         { font: 400 1.0rem/1.5 "Lato"; color: hsl(000, 0%, 100%); }
 
 .Directory h2 {
     display: flex;
