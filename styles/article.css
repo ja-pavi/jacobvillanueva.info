@@ -1,5 +1,5 @@
 article {
-    padding-top: 2em;
+    padding-top: 1em;
 
     display: grid;
     
@@ -7,22 +7,25 @@ article {
   
     background: #161617 35%;
 
-    padding-bottom: 2em;
+    padding-bottom: 4em;
   }
 
-.column {
-  float: left;
-  width: 50%;
-}
+  img {
+    margin-top: 3em;
+    border-radius: 50%;
+    height: auto;
+  }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+
   
-  article * { grid-column:  start / end; }
+article * { grid-column:  start / end; }
   
   @media (max-width: 8.5in) {
     
