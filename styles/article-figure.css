@@ -8,7 +8,5 @@
 .size-1, .size-2, .size-3, .size-4 img { width: 100% }
 
 figcaption {
-    margin-top: 0.5rem;
     display: flex;
-    justify-content: center;
 }

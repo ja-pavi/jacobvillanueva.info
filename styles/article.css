@@ -11,9 +11,9 @@ article {
   }
 
   img {
-    margin-top: 3em;
-    border-radius: 50%;
+    max-width: 100%;
     height: auto;
+    width: auto\9; /* ie8 */
   }
 
   .center {
@@ -21,6 +21,9 @@ article {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    margin-top: 3em;
+    border-radius: 50%;
+    height: auto;
   }
 
 
@@ -30,7 +33,6 @@ article * { grid-column:  start / end; }
   @media (max-width: 8.5in) {
     
     article { grid-template-columns: 1fr 5% [start] 15% 60% 15% [end] 5% 1fr; }
-
   }
 
   .full-screen {

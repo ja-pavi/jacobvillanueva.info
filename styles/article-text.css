@@ -7,6 +7,10 @@ h2 {
     margin-bottom: 2.4rem;
 }
 
+h3 {
+  margin-top: 1.2rem;
+}
+
 hr {
     margin-bottom: 2.5em;
     padding-bottom: 0.1em;
@@ -81,9 +85,9 @@ h1           { font: 700 2.0rem/1.2 "Lato"; color: white; }
 h2           { font: 400 1.0rem/1.0 "Lato"; color: hsl(000, 0%, 90%); }
 emT          { font: 400 1.0rem/1.0 "Lato"; color: hsl(000, 0%, 60%); font-style: italic; }
 time         { font: 700 1.0rem/1.2 "Lato"; color: hsl(000, 0%, 70%); }
-h3           { font: 700 1.0rem/1.2 "Lato"; color: hsl(000, 0%, 100%); }
-p            { font: 400 0.9rem/2 "Lato"; color: hsl(000, 0%, 100%); }
-figcaption p { font: 400 1.0rem/1.5 "Lato"; color: hsl(000, 0%, 100%); }
+h3           { font: 700 1.5rem/1.2 "Lato"; color: hsl(000, 0%, 90%); }
+p            { font: 400 1.0rem/2 "Lato"; color: hsl(000, 0%, 100%); }
+figcaption p { font: 400 0.6rem/1.5 "Lato"; color: hsl(000, 0%, 25%); }
 span         { font: 400 1.0rem/1.5 "Lato"; color: hsl(000, 0%, 100%); }
 
 .Directory h2 {
