@@ -4,8 +4,6 @@ article {
     display: grid;
     
     grid-template-columns: 0.5in 1fr [start] 1.25in 5in 1.25in [end] 1fr 0.5in [page];
-  
-    background: white;
 
     padding-bottom: 4em;
   }
@@ -27,8 +25,6 @@ article {
     text-align: center;
   }
 
-
-  
 article * { grid-column:  start / end; }
   
   @media (max-width: 8.5in) {
