@@ -12,6 +12,10 @@ h3 {
   margin-top: 2.4rem;
 }
 
+h5 {
+  margin-top: 2.4rem;
+}
+
 hr {
   margin-bottom: 2.4em;
   padding-bottom: 0.1em;
@@ -29,6 +33,23 @@ category {
 
 overview {
   margin-top: 1.2em;
+}
+
+.center-text {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 3em;
+  height: auto;
+  text-align: center;
+}
+
+@media (max-width: 8.5in) {
+    
+  .center-text {
+    margin-top: 1.2em;
+  }
 }
 
 .name {
@@ -61,18 +82,19 @@ overview {
 .dropcap:before {
   margin-top: -0.2em;
 }
-  .dropcap:after {
-    margin-bottom: -0.15em;
-  }
+
+.dropcap:after {
+  margin-bottom: -0.15em;
+}
   
-  .sr-only:not(:focus):not(:active) {
-    clip: rect(0 0 0 0); 
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap; 
-    width: 1px;
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
 }
 
 p {
@@ -86,16 +108,19 @@ overview     { font: 400 1.0rem/1.5 "PT Serif"; color: hsl(000, 0%, 30%); }
 emT          { font: 400 1.0rem/1.0 "PT Serif"; color: hsl(000, 0%, 0%); font-style: italic; }
 time         { font: 500 1.0rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
 h3           { font: 500 1.5rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
+h4           { font: 500 1.5rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
+h5           { font: 500 1.5rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
 p            { font: 400 1.0rem/2 "PT Serif"; color: hsl(000, 0%, 0%); }
 figcaption p { font: 400 0.75rem/1.5 "PT Serif"; color: hsl(000, 0%, 0%); }
 span         { font: 400 1.0rem/1.5 "PT Serif"; color: hsl(000, 0%, 0%); }
 category     { font: 700 0.9rem/1.0 "Lato"; color: rgb(125, 44, 44); }
+a1           { font: 700 0.9rem/1.0 "Lato"; color: rgb(125, 44, 44); }
 
 .Directory h2 {
     display: flex;
     justify-content: center;
     color: white;
-  }
+}
 
 @media (max-width: 8.5in) { :root { font-size: 18px; }}
 @media (max-width: 5in) { :root { font-size: 16; }}
