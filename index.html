@@ -21,9 +21,29 @@
       font-family: 'PT Serif', serif;
     }
   </style>
-  <body>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+  <div id="myNav" class="overlay">
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Articles</a>
+  </div>
+</div>
+  <body id="main">
     <article>
-      <box class="container" onclick="location.href='index.html';" style="cursor: pointer;">
+      <box class="container" onclick="openNav()">
         <div class="bar1"></div>
         <div class="bar2"></div>
         <div class="bar3"></div>
