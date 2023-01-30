@@ -125,5 +125,5 @@ a1           { font: 700 0.9rem/1.0 "Lato"; color: rgb(125, 44, 44); }
     color: white;
 }
 
-@media (max-width: 8.5in) { :root { font-size: 18px; }}
-@media (max-width: 5in) { :root { font-size: 16; }}
+@media (max-width: 8.5in) { :root { font-size: 14px; }}
+@media (max-width: 5in) { :root { font-size: 12px; }}
