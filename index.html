@@ -16,11 +16,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
   </head>
+
   <style>
     body {
       font-family: 'PT Serif', serif;
     }
   </style>
+
   <script>
     /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
     function openNav() {
@@ -32,11 +34,12 @@
       document.getElementById("main").style.marginLeft = "250px";
     }
 
-  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-  }
+    /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+
   </script>
 
   <div id="mySidenav" class="sidenav">
@@ -44,6 +47,7 @@
     <a href="about.html">About</a>
     <a href="index.html">Articles</a>
   </div>
+  
   <body id="main">
     <article>
       <box class="container" onclick="openNav()">
@@ -57,9 +61,9 @@
       <h5>
         2023
       </h5>
-      <article-highlight onclick="location.href='convertible-arbitrage.html';" style="cursor: pointer;">
+      <article-highlight onclick="location.href='exotic.html';" style="cursor: pointer;">
         <column class="left">
-          <category>Finance</category>
+          <category>Options</category>
           <h1>
             <a>What are Exotic Options?</a>
           </h1>
@@ -68,15 +72,15 @@
           </overview>
         </column>
         <column class = "left">
-          <img class="size_1" src="https://media1.popsugar-assets.com/files/thumbor/hihnrS-IggqeHZ0q7mdzjVBZ5bQ/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2020/03/30/696/n/1922283/tmp_xYGwXb_4dd8ba4854a0fba1_121118_0972_JEPA_R_1_.jpg" alt="">
+          <img class="size_1" src="figures/article/exotic.jpg" alt="">
         </column>
       </article-highlight>
       <h5>
         2022
       </h5>
-      <article-highlight onclick="location.href='convertible-arbitrage.html';" style="cursor: pointer;">
+      <article-highlight onclick="location.href='convertible.html';" style="cursor: pointer;">
         <column class="left">
-          <category>Finance</category>
+          <category>Convertibles</category>
           <h1>
             <a>Introduction to Convertible Arbitrage</a>
           </h1>
@@ -85,7 +89,7 @@
           </overview>
         </column>
         <column class = "left">
-          <img class="size_1" src="https://www.carscoops.com/wp-content/uploads/2022/07/Jaguar-E-Type-5_1a.jpg" alt="">
+          <img class="size_1" src="figures/article/convertible.jpg" alt="">
         </column>
       </article-highlight>
     </article>

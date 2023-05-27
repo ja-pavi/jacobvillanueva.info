@@ -10,8 +10,6 @@ article-highlight {
 .left {
     float: left;
     width: 50%;
-    min-height: 200px;
-    max-height: 500px;
 }
 
 article-highlight h1 {
