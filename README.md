@@ -1,2 +1,2 @@
 # Blog
-# link: www.jacob-villanueva.info
+# link: www.jacobvillanueva.info
