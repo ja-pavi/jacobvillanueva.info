@@ -8,11 +8,11 @@ h1 {
 
 h2 {
   margin-top: 1.2rem;
-  margin-bottom: 2.4rem;
 }
 
 h3 {
-  margin-top: 2.4rem;
+  margin-top: 1.2rem;
+  margin-bottom: 2.4em;
 }
 
 h5 {
@@ -36,6 +36,7 @@ category {
 
 overview {
   margin-top: 1.2em;
+  margin-bottom: 2em;
 }
 
 signee {
@@ -110,7 +111,8 @@ p {
 }
     
 h1           { font: 500 2.1rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
-h2           { font: 400 1.0rem/1.0 "PT Serif"; color: hsl(000, 0%, 0%); }
+h2           { font: 500 2.1rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
+h3           { font: 400 1.0rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
 overview     { font: 400 1.0rem/1.5 "PT Serif"; color: hsl(000, 0%, 30%); }
 emT          { font: 400 1.0rem/1.0 "PT Serif"; color: hsl(000, 0%, 0%); font-style: italic; }
 time         { font: 500 1.0rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
