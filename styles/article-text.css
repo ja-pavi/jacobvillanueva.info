@@ -1,6 +1,3 @@
-
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
-
 h1 {
   margin-top: 1.2rem;
   font-family: Arial, Helvetica, sans-serif;
@@ -12,7 +9,6 @@ h2 {
 
 h3 {
   margin-top: 1.2rem;
-  margin-bottom: 2.4em;
 }
 
 h5 {
@@ -20,7 +16,8 @@ h5 {
 }
 
 hr {
-  margin-bottom: 2.4em;
+  margin-top: 1.2em;
+  margin-bottom: 2.3em;
   padding-bottom: 0.1em;
   background-color: hsl(000, 0%, 10%);
   border: none;
@@ -31,7 +28,7 @@ emT {
 }
 
 category {
-  margin-top: 4em;
+  margin-top: 2em;
 }
 
 overview {
@@ -39,8 +36,17 @@ overview {
   margin-bottom: 2em;
 }
 
+overview2 {
+  margin-top: 2.4em;
+  margin-bottom: 2.4em;
+}
+
 signee {
   margin-top: 5em;
+}
+
+figcaption {
+
 }
 
 .center-text {
@@ -58,10 +64,6 @@ signee {
   .center-text {
     margin-top: 1.2em;
   }
-}
-
-.name {
-  font: 700;
 }
 
 .has-dropcap:first-letter {
@@ -112,8 +114,9 @@ p {
     
 h1           { font: 500 2.1rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
 h2           { font: 500 2.1rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
-h3           { font: 400 1.0rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
-overview     { font: 400 1.0rem/1.5 "PT Serif"; color: hsl(000, 0%, 30%); }
+h3           { font: 400 4.0em/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
+overview     { font: 400 1.2rem/1.5 "PT Serif"; color: hsl(000, 0%, 30%); }
+overview2    { font: 400 1.0rem/1.5 "PT Serif"; color: hsl(000, 0%, 30%); }
 emT          { font: 400 1.0rem/1.0 "PT Serif"; color: hsl(000, 0%, 0%); font-style: italic; }
 time         { font: 500 1.0rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
 h3           { font: 500 1.5rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
@@ -123,7 +126,7 @@ p            { font: 400 1.0rem/2 "PT Serif"; color: hsl(000, 0%, 0%); }
 signee       { font: 400 1.0rem/4 "PT Serif"; color: hsl(000, 0%, 10%); }
 figcaption p { font: 400 0.75rem/1.5 "PT Serif"; color: hsl(000, 0%, 0%); }
 span         { font: 400 1.0rem/1.5 "PT Serif"; color: hsl(000, 0%, 0%); }
-category     { font: 700 1rem/1.0 "Lato"; color: rgb(125, 44, 44); }
+category     { font: 700 1.2rem/1.0 "Lato"; color: rgb(125, 44, 44); }
 a1           { font: 700 0.9rem/1.0 "Lato"; color: rgb(125, 44, 44); }
 
 .Directory h2 {
