@@ -16,42 +16,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
   </head>
-
   <style>
     body {
       font-family: 'PT Serif', serif;
     }
   </style>
-
   <script>
     /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
     function openNav() {
-      if (screen.availWidth || screen.width < 430)
-      {
+      if (screen.width >= 1450) {
         document.getElementById("mySidenav").style.width = "100%";
-        document.getElementById("main").style.marginLeft = "250px";
-      } 
-      else
-      {
+      } else if (screen.width < 1450) {
         document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
       }
+      document.getElementById("main").style.marginLeft = "250px";
     }
 
-    /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-      document.getElementById("main").style.marginLeft = "0";
-    }
-
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
   </script>
 
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="about.html">About</a>
     <a href="index.html">Articles</a>
+    <a href="index.html">Projects</a>
   </div>
-  
   <body id="main">
     <article>
       <box class="container" onclick="openNav()">
@@ -63,39 +56,20 @@
         Articles
       </h4>
       <h5>
-        2023
-      </h5>
-      <article-highlight onclick="location.href='exotic.html';" style="cursor: pointer;">
-        <column class="left">
-          <category>Options</category>
-          <h2>
-            <a>What are Exotic Options?</a>
-          </h2>
-          <overview2>
-            A introduction to exotic options and how they are utilized on the trading floor
-          </overview2>
-          <br>
-        </column>
-        <column class = "left">
-          <img class="size_1" src="figures/article/exotic.jpg" alt="">
-        </column>
-      </article-highlight>
-      <h5>
         2022
       </h5>
-      <article-highlight onclick="location.href='convertible.html';" style="cursor: pointer;">
+      <article-highlight onclick="location.href='convertible-arbitrage.html';" style="cursor: pointer;">
         <column class="left">
-          <category>Convertibles</category>
-          <h2>
+          <category>Finance</category>
+          <h1>
             <a>Introduction to Convertible Arbitrage</a>
-          </h2>
-          <overview2>
-            A simplification of Calamos's Convertible Arbitrage novel
-          </overview2>
-          <br>
+          </h1>
+          <overview>
+            A simplification of Calamos's Convertible Arbitrage novel moved into a Python trading strategy
+          </overview>
         </column>
         <column class = "left">
-          <img class="size_1" src="figures/article/convertible.jpg" alt="">
+          <img class="size_1" src="./figures/IMG_3EBAAB6BE91A-1.jpeg" alt="">
         </column>
       </article-highlight>
     </article>
