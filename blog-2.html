@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    body {
+      font-family: 'PT Serif', serif;
+    }
+  </style>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (screen.width >= 1450) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else if (screen.width < 1450) {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Articles</a>
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Software Engineering</category>
+      <h1>
+        <a>CS 373 Fall 2023: Jacob Villanueva</a>
+      </h1>
+      <overview>Blog #2 for Software Engineering Fall 2023</overview>
+      <h2>
+        By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>September 1st, 2023</time>
+      <p></p>
+      <p></p>
+      <img class="size_1" src="./figures/blog2.jpg" alt="">
+
+      <h3>What did you do this past week?</h3>
+      <p></p>
+      <p>This past week was the first week that all my roomates were all finally moved into the apartment, so I was excited to spend time with them. We spent a good majority of the week playing Billiards (I'd say pool, but we weren't swimming so for clarification purposes). A big moment for this week was my roomate taking his MCAT thursday, and to celebrate him, we got some friends together to throw a surprise birthday party for him. It's been a good week, I'm starting to find a groove for classes and being back in Austin.</p>
+
+      <h3>What's in your way?</h3>
+      <p></p>
+      <p>I have a couple of tricky assignments, Collatz being one of them, though nothing I can't handle. Just need to iron out some creases and get over some humps this next couple weeks. I don't truly believe anything is in my way per se, though I do see some of the work in my courses as things I need to handle.</p>
+
+      <h3>What will you do next week?</h3>
+      <p></p>
+      <p>Next week we get Monday off, so that is always exciting, first football game is this weekend that will be a ton of fun. Life is good. I'm not really someone who plans to far out in advance, I allow things to happen.</p>
+
+      <h3>What did you think of Paper #2: Makefile</h3>
+      <p></p>
+      <p>I normally don't check out the Makefile, it hurts my head to read through it and try to comprehend whats going on. Though I'm glad we got to annotate it and see our classmates' annotations. It allows for some of the fog I normally have while looking at it to be removed.</p>
+
+      <h3>What was your experience of the Collatz project? (This question will vary, week to week.)</h3>
+      <p></p>
+      <p>The Collatz project so far has been a good time to work on. I got to a good spot though HackerRank's #2 testcase is still tripping me up a little bit. I have the optimizations that Prof. Downing gave us, and a couple other little tricks but still searching for a big breakthrough.</p>
+
+      <h3>What made you happy this week?</h3>
+      <p></p>
+      <p>Having all my roommates together, they are my family while I'm in Austin. Love those guys.</p>
+
+      <h3>What's your pick-of-the-week or tip-of-the-week?</h3>
+      <p></p>
+      <p>Pick-of-the-week would be the "Black" Python formatting package that we are using on Collatz, super cool package that I was just now introduced to. Will use it going forward. </p>
+      
+      <a href="https://www.linkedin.com/in/jacob-villanueva/"><img class = "center" src="/Jacob 5.png" style="width:150px;height:auto;"></img></a>
+    </article>
+  </body>
