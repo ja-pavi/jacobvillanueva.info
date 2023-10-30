@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    body {
+      font-family: 'PT Serif', serif;
+    }
+  </style>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (window.innerWidth <= 518) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Articles</a>
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Software Engineering</category>
+      <h1>
+        <a>CS 373 Fall 2023: Jacob Villanueva</a>
+      </h1>
+      <overview>Blog #6 for Software Engineering Fall 2023</overview>
+      <h2>
+        By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>October 1st, 2023</time>
+      <p></p>
+      <p></p>
+      <img class="size_1" src="../../figures/blog/blog6.jpeg" alt="">
+
+      <h3>What did you do this past week?</h3>
+      <p></p>
+      <p>
+        This past week, I have a couple of key moments that I would like to highlight: Celebrated my roommate's birthday, went to the UT vs Kansas Football Game, watching the Houston Texans game, and overall just had a strong overall week.
+
+        Things have been really good recently, and I've been appreciating the smaller things in my life a lot more. I find that I'm far more grateful for all that happens in my life, and I have been a lot happier because of it. 
+      </p>
+
+      <h3>What's in your way?</h3>
+      <p></p>
+      <p>
+        There is nothing in my way. Though I do have some things this upcoming week that will require my attention, such as the IBD 1 Phase 2, and some other projects in courses that I am taking. I am excited for some possible opportunities this upcoming week, and look forward to figuring out some of the challenges I currently have on my to do list.
+      </p>
+
+      <h3>What will you do next week?</h3>
+      <p></p>
+      <p>
+        This upcoming week, I hope to get started on IBD 1 Phase 2, as my team and I already delegated tasks over this past weekend. Hopefully, we can begin cooking up some results for these separate streams.
+      </p>
+
+      <h3>What did you think of Paper #6. The Open-Closed Principle</h3>
+      <p></p>
+      <p>
+        I always enjoy reading the papers that are assigned to us, as most of them I find them quite interesting. Being able to annotate and bring some of my own thoughts and connections to the paper allows me to learn better, and allows me to further dive into Computer Science topics.
+      </p>
+
+      <h3>What did you think of of Python's reduce and iteration?</h3>
+      <p></p>
+      <p>
+        I actually enjoyed iteration quite a bit, however I was not in class for reduce. Though when I do the exercises, I'm glad we get to partner up as I love the social aspect of working with a teammate.
+      </p>
+
+      <h3>What did you think of of Project #2: IDB1?</h3>
+      <p></p>
+      <p>
+        My team has been quite solid. I think we have strong communication and make sure to get started early. Hopefully we can keep a similar manner into Phase 2, and I'm happy with our work and progress on Phase 1.
+      </p>
+
+      <h3>What made you happy this week?</h3>
+      <p></p>
+      <p>
+        Celebrating my roommate's birthday with a dinner with all 5 of my roommates on Friday night.
+      </p>
+
+      <h3>What's your pick-of-the-week or tip-of-the-week?</h3>
+      <p></p>
+      <p>
+        My tip-of-the-week has to be the Open-Closed principle that we learned about in Paper #6, I hope to implement it into my own workflows soon.
+      </p>
+      
+      <a href="https://www.linkedin.com/in/jacob-villanueva/">
+        <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+      </a>
+    </article>
+  </body>

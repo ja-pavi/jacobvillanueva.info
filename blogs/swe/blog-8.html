@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    body {
+      font-family: 'PT Serif', serif;
+    }
+  </style>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (window.innerWidth <= 518) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Articles</a>
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Software Engineering</category>
+      <h1>
+        <a>CS 373 Fall 2023: Jacob Villanueva</a>
+      </h1>
+      <overview>Blog #8 for Software Engineering Fall 2023</overview>
+      <h2>
+        By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>October 14th, 2023</time>
+      <p></p>
+      <p></p>
+      <img class="size_1" src="../../figures/blog/blog8.jpeg" alt="">
+
+      <h3>What did you do this past week?</h3>
+      <p></p>
+      <p>
+        I just finished up an exam for a course Thursday, glad to get passed that. Hopefully I passed with flying colors.
+        <br>
+        <br>
+        Also this past week, the Astros beat the Minnesota Twins to head to the ALCS for the 7th time in a row. They will now face off in a 7-game series against the Rangers for the battle of Texas. I would be surprised if the rangers win more then two games, and honestly that is being quite generous. Excited to watch the first game sunday. 
+      </p>
+
+      <h3>What's in your way?</h3>
+      <p></p>
+      <p>
+        I'll reiterate a similar sentiment from last week as things haven't really changed. I believe that I don't have anything in my way. Though I'm currently working to get out of a recent rut I have been feeling, and have made some decisions last week that have freed up my schedule quite a bit. I'm looking to prioritize my head space and relationships over jumping all over every new opportunity put in front of me. With that said, I'm happy with the hard decisions I had to make, and look to continue to be better each week. 
+      </p>
+
+      <h3>What will you do next week?</h3>
+      <p></p>
+      <p>
+        This upcoming week, IBD #2 is due on Wednesday, so I will prioritize getting that ready for turn in. I also wil be watching the Rangers and Astros series unfold, and get some assignments finished up for other classes as well. All in all, should be a solid week and I'm greatly looking forward to it.
+      </p>
+
+      <h3>What did you think of Paper #8, The Integration Segregation Principle?</h3>
+      <p></p>
+      <p>
+        This week I am completing the blog before doing the paper, so I don't have feeling towards the paper yet. Though with that said, I always enjoy reading the papers that are assigned to us, as most of them I find them quite interesting. Being able to annotate and bring some of my own thoughts and connections to the paper allows me to learn better, and allows me to further dive into Computer Science topics.
+      </p>
+
+      <h3>What did you think of of functions, decorators, and cache?</h3>
+      <p></p>
+      <p>
+        I greatly enjoyed the topics that we covered this past week, though I got obliterated by the quizzes.
+      </p>
+
+      <h3>What made you happy this week?</h3>
+      <p></p>
+      <p>
+        Spending time with people that I have a lot of love for.
+      </p>
+
+      <h3>What's your pick-of-the-week or tip-of-the-week?</h3>
+      <p></p>
+      <p>
+        My pick-of-the-week has to be Goodnotes. I use it for all my note taking and writings on my iPad. Great tool.
+      </p>
+      
+      <a href="https://www.linkedin.com/in/jacob-villanueva/">
+        <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+      </a>
+    </article>
+  </body>

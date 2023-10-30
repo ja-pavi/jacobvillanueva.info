@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    body {
+      font-family: 'PT Serif', serif;
+    }
+  </style>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (window.innerWidth <= 518) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Articles</a>
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Software Engineering</category>
+      <h1>
+        <a>CS 373 Fall 2023: Jacob Villanueva</a>
+      </h1>
+      <overview>Blog #7 for Software Engineering Fall 2023</overview>
+      <h2>
+        By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>October 8th, 2023</time>
+      <p></p>
+      <p></p>
+      <img class="size_1" src="../../figures/blog/blog7.jpeg" alt="">
+
+      <h3>What did you do this past week?</h3>
+      <p></p>
+      <p>
+        This past week, I got a Red River Rivalry ticket from my roommate and we drove up Saturday morning to Dallas. I was able to hang out with is family again, as I haven't seen them in a while, and they took great care of us. This was my first time going to Texas vs OU and I'm glad that I got to go. The game was a lot of fun, and though we didn't win the whole event was great. Great weather, the carnival was awesome, and it's always great spending time with people who I love. It was a great weekend.
+      </p>
+
+      <h3>What's in your way?</h3>
+      <p></p>
+      <p>
+        Currently, I don't have anything in my way. Though I have fallen into a bit of a rut. I just feel pretty burned out. I have been working for a while, and I'm just feeling the weight of all the things that I have agreed to put on my plate. I find that I'm happiest when I get to step away from all these things. As I grow to have stronger values and continue to become more sure of myself now, I continue to grow in the idea that my time and energy is valuable. I have felt these feelings for a while, though I thought I could weather the storm and continue on "grinding" through work that has fallen flat in my mind. However I believe these days of my life, at this age, are so valuable and I'm realizing that I want to spend each day doing the things I care for most and spending time with the people I love the most. I don't want to give my time to things that I no longer enjoy.
+      </p>
+
+      <h3>What will you do next week?</h3>
+      <p></p>
+      <p>
+        This upcoming week, I hope to continue to build out on IBD 1 Phase 2, as my team and I are continuing to build on our progress. I think this week will be strong and I hope to be in a strong position close to full completion going into next week.
+      </p>
+
+      <h3>What did you think of Paper #7. The Liskov Substitution Principle.</h3>
+      <p></p>
+      <p>
+        I'll reiterate similar feelings to how I felt last week, stating that I always enjoy reading the papers that are assigned to us, as most of them I find them quite interesting. Being able to annotate and bring some of my own thoughts and connections to the paper allows me to learn better, and allows me to further dive into Computer Science topics.
+      </p>
+
+      <h3>What did you think of of DigitsIterator, Python's comprehensions, and yield?</h3>
+      <p></p>
+      <p>
+        I greatly enjoyed the topics that we covered this past week, and I got cold-called earlier in the week. I was able to go ballistic and decimate my cold call. I did a fantastic job on answering the questions, and did well on the quizzes. Though fumbled the bag hard on Friday. Thankfully, Monday and Wednesday I got 3's to make up the blunders on Friday. Hope for 3 3s this upcoming week.
+      </p>
+
+      <h3>What made you happy this week?</h3>
+      <p></p>
+      <p>
+        Spending time with people that I have a lot of love for.
+      </p>
+
+      <h3>What's your pick-of-the-week or tip-of-the-week?</h3>
+      <p></p>
+      <p>
+        My pick-of-the-week has to be Excel extensions. I was introduced to them at a previous job I had last semester, though found a new one this week that was very helpful in gathering historical lending rate data on decentralized exchanges called Wisesheets.
+      </p>
+      
+      <a href="https://www.linkedin.com/in/jacob-villanueva/">
+        <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+      </a>
+    </article>
+  </body>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    body {
+      font-family: 'PT Serif', serif;
+    }
+  </style>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (window.innerWidth <= 518) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Articles</a>
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Software Engineering</category>
+      <h1>
+        <a>CS 373 Fall 2023: Jacob Villanueva</a>
+      </h1>
+      <overview>Blog #1 for Software Engineering Fall 2023</overview>
+      <h2>
+        By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>August 26th, 2023</time>
+      <p></p>
+      <p></p>
+      <img class="size_1" src="../../figures/blog/blog.jpeg" alt="">
+
+      <h3>Where did you grow up?</h3>
+      <p></p>
+      <p> 
+        I grew up just north of Houston in Spring, Texas. 
+      </p>
+
+      <h3>What high school did you attend?</h3>
+      <p></p>
+      <p>
+        I attended Klein High School.
+      </p>
+
+      <h3>Why did you come to UT?</h3>
+      <p></p>
+      <p>
+        As a Texas kid, being able to attend the best public school in the state and the largest college brand in the nation was an easy choice. With UT having a great business school, great computer science program, the value was unbeatable for in-state tuition. I got into some strong out-of-state programs, but I never wanted to leave Texas.
+      </p>
+
+      <h3>What was your favorite extracurricular activity in high school?</h3>
+      <p></p>
+      <p>My favorite highschool extracurricular activity in high school was attending local hackathons with close friends. In my senior year, we built a geo-fencing location system for elementary school parent pick up systems and got first in multiple categories of the competition. I made life long friends through this, as well as learned many skills through building ideas that interested me.</p> 
+
+      <h3>Why are you majoring in CS?</h3>
+      <p></p>
+      <p>I'm majoring in CS because I believe that it allows me to technical software skills that can be applied to any industry. Through my degree I have been able to explore a myriad of career paths and many industries. As technology continues to evolve, I believe that a programming background is only going to get more and more important!</p>
+
+      <h3>Why are you in this class?</h3>
+      <p></p>
+      <p>I'm in this class as I want to expand my skillset around Python, SQL, and collaborating with peers. I have heard this course be recommended by many upperclassmen as well.</p>
+
+      <h3>What are your expectations of this class?</h3>
+      <p></p>
+      <p>My expectations surround coming out with a sufficient foundation around Python and SQL, while also understanding the collaboration that goes on within the software engineering industry.</p>
+      
+      <h3>How much do you know about Javascript/Python/SQL/Web programming?</h3>
+      <p></p>
+      <p>I have explored and used all 4 of these tools, however I have very little formal education in them. I taught myself how to use the basics of them through youtube videos and building out passion projects.</p>
+
+      <h3>How did you like the first lectures?</h3>
+      <p></p>
+      <p>I was not on campus for the first lecture, however the third lecture was great. I enjoyed how Prof. Downing incorporates the class through 1-on-1 discussions with students. I was very engaged and look forward to the rest of the semester.</p>
+
+      <h3>How did you feel about the cold calling?</h3>
+      <p></p>
+      <p>Loved it. I hope I'm ready when I'm called.</p>
+
+      <h3>What do you think about specifications grading?</h3>
+      <p></p>
+      <p>I think that it's an interesting idea, and one that is more aligned to how we will be graded throughout our careers. I don't have too much an opinion yet, but I'm intrigued to see how it pans out.</p>
+
+      <h3>What made you happy this week?</h3>
+      <p></p>
+      <p>Being able to reconnect with my roommates who I haven't been able to see since last semester.</p>
+
+      <h3>What's your pick-of-the-week or tip-of-the-week?</h3>
+      <p></p>
+      <p>My tip of the week has to be always use assertions, and when you find a bug in your code put a assertion that can catch that bug before fixing the code! Thanks to Prof. Downing I will not forget this lesson.</p>
+
+      <a href="https://www.linkedin.com/in/jacob-villanueva/">
+        <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+      </a>
+    </article>
+  </body>

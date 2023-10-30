@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    body {
+      font-family: 'PT Serif', serif;
+    }
+  </style>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (window.innerWidth <= 518) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Articles</a>
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Software Engineering</category>
+      <h1>
+        <a>CS 373 Fall 2023: Jacob Villanueva</a>
+      </h1>
+      <overview>Blog #3 for Software Engineering Fall 2023</overview>
+      <h2>
+        By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>September 10th, 2023</time>
+      <p></p>
+      <p></p>
+      <img class="size_1" src="../../figures/blog/blog3.jpeg" alt="">
+
+      <h3>What did you do this past week?</h3>
+      <p></p>
+      <p>Yesterday was the Texas vs Alabama football game, and I went to our apartment's pool to watch it with my roomates. We won, which was great, excited to see what we do the rest of the year. Hook Em'. </p>
+
+      <h3>What's in your way?</h3>
+      <p></p>
+      <p>Currently, I don't believe there is anything in my way. There is a couple things that I'm waiting on, though I feel pretty good about these upcoming weeks.</p>
+
+      <h3>What will you do next week?</h3>
+      <p></p>
+      <p>I'm headed to California at the end of the week for a STEM Summit for a scholarship program, so hopping on a plane Thursday morning in Austin, and leaving California Sunday afternoon.</p>
+
+      <h3>What did you think of Paper #3: Continuous Integration</h3>
+      <p></p>
+      <p>It was a great, insightful read that allowed me to dig into a new software engineering practice. I found it interesting and exciting to see how software engineering work in a team setting is executed in industry.</p>
+
+      <h3>What did you think of the Perusall quiz?</h3>
+      <p></p>
+      <p>I might be in the minority here, but I don't think I got a Perusall quiz. I annotated the paper, though don't remember seeing a quiz. Someone let me in on the secret.</p>
+
+      <h3>What was your experience of the Collatz project, now that it's done? (This question will vary, week to week.)</h3>
+      <p></p>
+      <p>I really enjoyed Collatz, I found it as a good introductory project to get myself re-familiarized with Python as I haven't used it in a while. I'm excited about isPrime and hope to keep building on my skill sets throughout the duration of the course.</p>
+
+      <h3>What made you happy this week?</h3>
+      <p></p>
+      <p>Watching UT beat Bama in the pool with my friends made me happy.</p>
+
+      <h3>What's your pick-of-the-week or tip-of-the-week?</h3>
+      <p></p>
+      <p>Pick-of-the-week would be Godot 4, I have been using it in my Game Technology course to build out game engines and I have found it to be a great tool.</p>
+      
+      <a href="https://www.linkedin.com/in/jacob-villanueva/">
+        <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+      </a>
+    </article>
+  </body>
