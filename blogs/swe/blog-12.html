@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+    </script>
+  </head>
+  <style>
+    body {
+      font-family: 'PT Serif', serif;
+    }
+  </style>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (window.innerWidth <= 518) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="../../about.html">About</a>
+    <a href="../../index.html">Articles</a>
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Software Engineering</category>
+      <h1>
+        <a>CS 373 Fall 2023: Jacob Villanueva</a>
+      </h1>
+      <overview>Blog #12 for Software Engineering Fall 2023</overview>
+      <h2>
+        By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>November 14th, 2023</time>
+      <p></p>
+      <p></p>
+      <img class="size_1" src="../../figures/blog/blog12.jpeg" alt="">
+
+      <h3>What did you do this past week?</h3>
+      <p></p>
+      <p>
+        This past week, I got to take a trip to Florida to see a friend of mine. It was a fantastic weekend, and I'm so happy that I got to see them. It's always hard coming back from a trip back to ordinary life, though I'm glad I got the time off that I had to see them. I spent most of the weekend eating great food, relaxing, and spending time doing anything expect worry about work.
+      </p>
+      <p></p>
+      <p>
+        I also, spent a good amount of time watching the Texans and Rockets kill it. I love sports, and am a huge fan of all Houston sports. After the Astros passed away in the playoffs last month, all my attention has turned to the Texans and Rockets who are highly outperforming expectations. It's a great time to be a Houston sports fan, I'm also a huge fan of the Joe Espada pickup for Astro's manager, I believe that it should have happened sooner.
+      </p>
+
+      <h3>What's in your way?</h3>
+      <p></p>
+      <p>
+        I'll reiterate a similar sentiment from last week as things haven't really changed. I believe that I don't have anything in my way. I'm feeling good about this upcoming week, and have a lot stronger focus heading into the end of this semester. I had both a fantastic week and weekend, and look forward to all that is to come this upcoming week. Exciting stuff.
+      </p>
+
+      <h3>What will you do next week?</h3>
+      <p></p>
+      <p>
+        This upcoming week, I'm looking to settle back and out of the apartment, as I get ready to head home for Thanksgiving.
+      </p>
+
+      <h3>What did you think of Paper #12. Why extends is evil.</h3>
+      <p></p>
+      <p>
+        I didn't do the paper this week yet, will do after this! Utilizing my slip days for the blog and paper this week.
+      </p>
+
+      <h3>What did you think of of subqueries and strategy pattern?</h3>
+      <p></p>
+      <p>
+        I greatly enjoyed the topics that we covered this past week, and I did way way better on the quizzes this week. Excited to be done with this semester, though at the same time wish I could continue SWE into next semester!
+      </p>
+
+      <h3>What made you happy this week?</h3>
+      <p></p>
+      <p>
+        Spending time with people that make me laugh and happy.
+      </p>
+
+      <h3>What's your pick-of-the-week or tip-of-the-week?</h3>
+      <p></p>
+      <p>
+        My pick-of-the-week has to be NY Times Games, I played the connections game almost everyday for a while with a friend of mine. I love it, partly because I'm just fantastic at it.
+      </p>
+      
+      <a href="https://www.linkedin.com/in/jacob-villanueva/">
+        <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+      </a>
+    </article>
+  </body>
