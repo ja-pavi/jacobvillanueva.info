@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="stylesheet" href="/styles/prism.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (screen.width >= 1450) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else if (screen.width < 1450) {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="../../about.html">About</a>
+    <a href="../../index.html">Articles</a>
+    <a href="../../blogs.html">Blogs</a>
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Finance</category>
+      <h1>
+        <a>FX Option Pricing with Garman Kohlhagen</a>
+      </h1>
+      <overview>Using Garman Kohlhagen equations to model volatility surface of EUR/USD Options</overview>
+      <h2>
+        By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>November 25th, 2023</time>
+      <h3>Introduction</h3>
+      <p class="has-dropcap"> 
+        Unlike stock options, which use the Black Scholes model for pricing, foreign exchange (FX) options most predominantly use the Garman Kohlhagen pricing model.  
+        Garman Kohlhagen’s model is an extension of the Black-Scholes model specifically designed for pricing European-style FX options as it considers the impact of interest rate differentials between the two currencies that make up an FX option pair.        
+      </p>
+      <h3>Options Explanation</h3>
+      <p>
+        To put it simply, an options contract is an agreement between a buyer and a seller in a market that allows the buyer the right to purchase (or sell) an asset within a given timeframe at an agreed upon price. Due to the favorable nature given to the buyer to either exercise or not exercise the agreement, the buyer of the option pays a premium upfront to the seller. 
+      </p>
+      <h3>Garman Kohlhagen</h3>
+      <p>
+        An interesting problem that surrounds options is how to correctly price them to not allow investors to arbitrage inefficiencies. As stated in the introduction there are multiple models that have been developed over time that have become the standard, most known being the Black Scholes model. The Black Scholes model is used predominantly for stock options, and needs a few adjustments to make it viable for FX options. 
+      </p>
+      <p>
+        This is where Garman Kohlhagen’s model looks to fill the gaps by taking into account the differing interest rates that exist in the countries of the currency pairs given in an FX option. Utilizing a similar composition to Black Scholes, we calculate the price of an option through the underlying spot price, risk free rate (both domestically and foreign), time to maturity, and volatility. I have taken the equations that Garman Kohlhagen has done, and put them into Python.
+      </p>
+
+      <img class="size_1" src="../../figures/article/GKequation.png" alt="">
+      <figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+
+      <h3>
+        Programming German Kohlhagen Equations in Python
+      </h3>
+<script src="/prism.js"></script>
+<p>Python Imports:</p>
+<pre>
+<code class="language-python"># Importing Packages
+import math
+import json
+import numpy as np
+import pandas as pd
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+import pandas_datareader as reader
+from scipy.optimize import minimize
+from datetime import datetime, date
+from scipy.interpolate import interp1d
+from scipy.interpolate import griddata
+from mpl_toolkits.mplot3d import Axes3D
+from scipy.ndimage import gaussian_filter1d</code>
+</pre>
+<p>Call, Put, D1, D2 Equations Code Block:</p>
+<pre>
+<code class="language-python"># S is the current spot rate
+# K is the strike price
+# T is the time to maturity
+# rd is domestic risk free simple interest rate
+# rf is foreign risk free simple interest rate
+# sigma is the volatility of the FX rate
+# flag 'c' or 'p' for call or put
+
+# Calcuating d1 of Black Scholes Equation
+def d1(S, K, T, rd, rf, sigma):
+    return ((np.log(S / K) + (rd - rf + (sigma ** 2) / 2) * T)) / (sigma * np.sqrt(T))
+
+# Calcuating d2 of Black Scholes Equation
+def d2(S, K, T, rd, rf, sigma):
+    return d1(S, K, T, rd, rf, sigma) - sigma * np.sqrt(T)
+        
+# Call Option Black Scholes Equation
+def gkc(S, K, T, rd, rf, sigma):
+    return S * norm.cdf(d1(S, K, T, rd, rf, sigma)) - K * math.exp(-rd * T) * norm.cdf(d2(S, K, T, rd, rf, sigma))
+
+# Put Option Black Scholes Equation
+def gkp(S, K, T, rd, rf, sigma):
+    return K * math.exp(-rd * T) * norm.cdf(-1 * d2(S, K, T, rd, rf, sigma)) - S * math.exp(-rf * T) * norm.cdf(-1 * d1(S, K, T, rd, rf, sigma))</code>
+</pre>
+<p>Gathering Historical Data on Underlying Currency</p>
+<pre>
+<code class="language-python"># DEXUSEU is U.S. Dollars to Euro Spot Exchange Rate
+expiry = '02-23-2024'
+strike = 1.1170
+
+# Pulling FX Exchange data from Federal Reserve Bank of St. Louis
+exchange_rate = reader.DataReader('DEXUSEU', 'fred')
+
+# Renaming Column, and dropping NA rows
+exchange_rate = exchange_rate.dropna()
+
+# Calculating, Adding Previous Closing Price Column & Daily Returns
+exchange_rate = exchange_rate.assign(Previous = exchange_rate.DEXUSEU.shift(1))
+exchange_rate['Returns'] = ((exchange_rate.DEXUSEU - exchange_rate.Previous) / exchange_rate.Previous)
+
+# Renaming column to EUR/USD
+exchange_rate.rename(columns={'DEXUSEU': 'EUR/USD'}, inplace=True)
+
+# Calculating Volatility from historical data
+sigma = np.sqrt(252) * exchange_rate['Returns'].std() 
+
+# Pulling One Yr. Yield data from Federal Reserve Bank of St. Louis
+oneyrUSD = (reader.DataReader('DGS1', 'fred').iloc[-1] / 100)[0]
+oneyrEUR = (reader.DataReader('ECBESTRVOLWGTTRMDMNRT', 'fred').iloc[-1] / 100)[0]
+
+# Spot Price
+spot = exchange_rate['EUR/USD'].iloc[-1]
+
+# Calculating Time to Maturity
+T = (datetime.strptime(expiry, "%m-%d-%Y") - datetime.utcnow()).days / 365
+
+exchange_rate</code>
+</pre>
+<p>Calculating Option Price</p>
+<pre>
+<code class="language-python"># Variables for Pricing
+print("Spot Price:      ", round(spot, 3))
+print("Strike Price:    ", round(strike, 3))
+print("1 Yr US Yield %: ", round(oneyrUSD, 3))
+print("1 Yr EU Yield %: ", round(oneyrEUR, 3))
+print("DTE:             ", round(T, 3))
+print("Sigma:           ", round(sigma, 3))
+
+# Storing Option Price for use in calcualting Implied Volatility
+option_call_price = garman_kohlhagen(spot, strike, T, oneyrUSD, oneyrEUR, sigma, "c")
+option_put_price = garman_kohlhagen(spot, strike, T, oneyrUSD, oneyrEUR, sigma, "p")
+
+# Print Option Price
+print("Call Price:      ",  round(option_call_price, 3))
+print("Put Price:       ",  round(option_put_price, 3))</code>
+</pre>
+      <a href="https://www.linkedin.com/in/jacob-villanueva/">
+        <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+      </a>
+    </article>
+  </body>

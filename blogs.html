@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+      /* Debug function so that I'm able to check the innerWidth and innerHeight of the open window for the website, for mobile menu usage */
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+    </script>
+  </head>
+  <style>
+    body {
+      font-family: 'PT Serif', serif;
+    }
+  </style>
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (window.innerWidth <= 518) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Articles</a>
+    <a href="blogs.html">Blogs</a>
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+      <h4 class="center-text">
+        Blogs
+      </h4>
+      <script type="text/javascript">
+        /* Debug function so that I'm able to check the innerWidth and innerHeight of the open window for the website, for mobile menu usage */
+        /*document.write(w)*/
+      </script>
+      <script type="text/javascript">
+        /* Debug function so that I'm able to check the innerWidth and innerHeight of the open window for the website, for mobile menu usage */
+        /*document.write(h)*/
+      </script>
+      <h5>
+        2023
+      </h5>
+      <article-highlight onclick="location.href='blogs/swe/blog-12.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #12 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog12.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-11.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #11 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog11.webp" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-10.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #10 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog10.webp" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-9.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #9 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog9.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-8.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #8 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog8.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-7.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #7 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog7.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-6.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #6 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog6.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-5.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #5 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog5.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-4.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #4 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog4.png" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-3.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #3 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog3.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-2.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #2 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog2.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <article-highlight onclick="location.href='blogs/swe/blog-1.html';" style="cursor: pointer;">
+        <column class="left">
+          <category>Software Engineering</category>
+          <h1>
+            <a>CS 373 Fall 2023: Jacob Villanueva</a>
+          </h1>
+          <overview>
+            Blog #1 for Software Engineering Fall 2023
+          </overview>
+        </column>
+        <column class = "left">
+          <img class="size_1" src="./figures/blog/blog.jpeg" alt="">
+        </column>
+      </article-highlight>
+      <p></p>
+      <a href="https://www.linkedin.com/in/jacob-villanueva/">
+        <img class = "center" src="figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+      </a>
+    </article>
+    </article>
+  </body>
