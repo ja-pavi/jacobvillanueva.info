@@ -54,15 +54,17 @@
       <h1>
         <a>FX Option Pricing with Garman Kohlhagen</a>
       </h1>
-      <overview>Using Garman Kohlhagen equations to model volatility surface of EUR/USD Options</overview>
+      <overview>Using Garman Kohlhagen equations to model volatility surface of EUR/USD Options
+      </overview>
       <h2>
         By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
       </h2>
       <hr>
       <time>November 25th, 2023</time>
       <h3>Introduction</h3>
+      <p><b>Github Repository:</b><a href="https://github.com/ja-pavi/Garman-Kohlhagan-Model"> <u>https://github.com/ja-pavi/Garman-Kohlhagan-Model</u></a></p>
       <p class="has-dropcap"> 
-        Unlike stock options, which use the Black Scholes model for pricing said option, foreign exchange (FX) options most predominantly use the Garman Kohlhagen pricing model instead. Garman Kohlhagen's model is an extension of the Black-Scholes model though now specifically designed for pricing European-style FX options as it considers the impact of interest rate differentials between the two currencies that make up an FX option pair.        
+        Unlike stock options, which use the Black Scholes pricing model, foreign exchange (FX) options most predominantly use the Garman Kohlhagen pricing model instead. Garman Kohlhagen's model is an extension of the Black-Scholes model though now specifically designed for pricing European-style FX options as it considers the impact of interest rate differentials between the two currencies that make up an FX option pair.        
       </p>
       <h3>Options Explanation</h3>
       <p>
@@ -79,11 +81,10 @@
       <img class="size_1" src="../../figures/article/GKequation.png" alt="">
       <figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
 
-      <h3>
-        Programming German Kohlhagen Equations in Python
-      </h3>
+<h3>
+Creating Garman Kohlhagen Pricing Model in Python
+</h3>
 <script src="/prism.js"></script>
-<p>Python Imports:</p>
 <pre>
 <code class="language-python"># Importing Packages
 import math
@@ -100,7 +101,7 @@ from scipy.interpolate import griddata
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.ndimage import gaussian_filter1d</code>
 </pre>
-<p>Call, Put, D1, D2 Equations Code Block:</p>
+<p>1) Programming the variables utilized from the above Garman Kohlhagen pricing model equations, and splitting the call, put, d1, and d2 formulas into 4 separate helper functions for later use in a catch-all modeling function:</p>
 <pre>
 <code class="language-python"># S is the current spot rate
 # K is the strike price
@@ -126,7 +127,8 @@ def gkc(S, K, T, rd, rf, sigma):
 def gkp(S, K, T, rd, rf, sigma):
     return K * math.exp(-rd * T) * norm.cdf(-1 * d2(S, K, T, rd, rf, sigma)) - S * math.exp(-rf * T) * norm.cdf(-1 * d1(S, K, T, rd, rf, sigma))</code>
 </pre>
-<p>Gathering Historical Data on Underlying Currency</p>
+<p>2) At the start I looked to calculate a singular option price so I looked to gather some historical data on the Euro to USD exchange rate (EUR/USD). Starting by hard coding in both the expiration date and strike price of the FX option I looked to calculate. Though for the spot rate and interest rates, I utilized the Pandas DataReader library to pull live data from the Federal Reserve API. It was here, I was able to pull both the exchange rate of EUR/USD, as well as the U.S. risk free rate (US1Y), and the Euro short-term rate (€STR).</p>
+<p>Most of the code snippet below, is me manipuling the Pandas dataframe in order to get today closing price, previous day closing price, and then the daily returns of the spot rate. Then I calculate the expiry date.</p>
 <pre>
 <code class="language-python"># DEXUSEU is U.S. Dollars to Euro Spot Exchange Rate
 expiry = '02-23-2024'
@@ -160,7 +162,7 @@ T = (datetime.strptime(expiry, "%m-%d-%Y") - datetime.utcnow()).days / 365
 
 exchange_rate</code>
 </pre>
-<p>Calculating Option Price</p>
+<p>3) Utilizing all the above functions, I can now calculate the modeled price of the EUR/USD option with the following parameters:</p>
 <pre>
 <code class="language-python"># Variables for Pricing
 print("Spot Price:      ", round(spot, 3))
@@ -178,6 +180,263 @@ option_put_price = garman_kohlhagen(spot, strike, T, oneyrUSD, oneyrEUR, sigma, 
 print("Call Price:      ",  round(option_call_price, 3))
 print("Put Price:       ",  round(option_put_price, 3))</code>
 </pre>
+<pre>
+<code class="language-python">
+    # Output
+    Spot Price:       1.088
+    Strike Price:     1.117
+    1 Yr US Yield %:  0.052
+    1 Yr EU Yield %:  0.039
+    DTE:              0.249
+    Sigma:            0.073
+    Call Price:       0.009
+    Put Price:        0.031
+</code>
+</pre>
+<h3>
+Calculating Implied Volatility using Garman Kohlhagen pricing model
+</h3>
+<p>
+"The term implied volatility refers to a metric that captures the market's view of the likelihood of future changes in a given security's price. Implied volatility isn't the same as historical volatility, which measures past market changes and their actual results" (Investopedia, How Implied Volatility (IV) Works).
+</p>
+<p>
+One way to calculate implied volatility is to plug in all the other variables into the GK function, and back solve for volatility itself. In the below snippet, I'm creating a lambda function that uses trial and error based on an initial guess to find the minimum difference in the given GK price with the initial sigma value and the calculated GK option price with a historical sigma.
+</p>
+<pre>
+<code class="language-python">def implied_volatility(option_price, S, K, T, rd, rf, initial_guess = 0.2, flag = "c"):
+# Calculating Implied Volatility using both the GK model and numerical optimization from the Scipy minimize function
+implied_volatility_function = lambda sigma : np.sum((garman_kohlhagen(S, K, T, rd, rf, sigma, flag) - option_price) ** 2)
+
+# Numerical Optimization to find the sigma value with the least squared difference to the GK Pricing Model
+optimal_difference = minimize(implied_volatility_function, initial_guess, bounds=[(0,1)])
+
+return optimal_difference.x[0]</code>
+</pre>
+<p>Calling the function, and showcasing difference: </p>
+<pre>
+<code class="language-python"># Implied Volatility of Option
+IV = implied_volatility(option_call_price, spot, strike, T, oneyrUSD, oneyrEUR)
+
+# Printing out Implied Volatility, Historical Volatility
+print("Implied Volatility:      ", IV)
+print("Historical Volatility:   ", sigma)</code>
+</pre>
+<pre>
+<code class="language-python">
+    # Output
+    Implied Volatility:       0.07259883228509564
+    Historical Volatility:    0.07259807632223692
+</code>
+</pre>
+<h3>Volatility Smile Construction Functions</h3>
+<p>The volatility smile is a graphical pattern that shows that implied volatility for the options in question increases as they move away from the current stock or asset price (Sofi, What Is A Volatility Smile?).</p>
+<pre>
+<code class="language-python"># Constructing the volatility smile from the strikes and maturities lists given
+def volatility_smile(option_prices, S, Ks, Ts, rd, rf):
+    implied_volatilities = []
+    
+    # Loop through the maturities
+    for T in Ts:
+        # Loop through the strike prices
+        for K in Ks:
+            # Pull the option price by using the maturity and strike price as a key
+            option_price = option_prices[(K, T)]
+
+            # Calculate the implied_volatility from the given parameters
+            IV = implied_volatility(option_price, S, K, T, rd, rf)
+            implied_volatilities.append((K, T, IV))
+
+    return implied_volatilities</code>
+</pre>
+<pre>
+<code class="language-python">def plot_volatility_smile(implied_volatilities):
+    # Unpack implied volatilities tuple
+    strikes, maturities, vols = zip(*implied_volatilities)
+
+    # Sort maturities in ascending order
+    sorted_maturities = sorted(set(maturities))
+
+    # Plot the volatility smile for each maturity
+    for T in sorted_maturities[:len(sorted_maturities)//2]:
+        subset = [(K, IV) for K, _, IV in implied_volatilities if _ == T]
+        subset_strikes, subset_vols = zip(*subset)
+
+        # Use cubic interpolation to smooth the volatility smile
+        f = interp1d(subset_strikes, subset_vols, kind='cubic')
+        smooth_strikes = np.linspace(min(subset_strikes), max(subset_strikes), 100)
+        smooth_vols = f(smooth_strikes)
+
+        plt.plot(smooth_strikes, smooth_vols, label=f'Maturity: {round(T * 365)} days')
+
+    plt.xlim(left=min(strikes) - .005, right=max(strikes) + .005)
+    plt.ylim(bottom=min(vols) - 0.005, top=max(vols) + 0.005)
+    plt.xlabel('Strike Price')
+    plt.ylabel('Implied Volatility')
+    plt.title('Volatility Smile')
+    plt.legend()
+    plt.show()</code>
+</pre>
+<h3>Plotting the Volatility Surface with Matplotlib</h3>
+<p>The volatility surface refers to a three-dimensional plot of the implied volatilities of the various options listed on the same stock. Implied volatility is used in options pricing to show the expected volatility of the option's underlying stock over the life of the option (Investopedia, Volatility Surface Explained).</p>
+<pre>
+<code class="language-python">def plot_volatility_surface(implied_volatilities):
+    # Extract strikes, maturities, and implied volatilities
+    strikes, maturities, vols = zip(*implied_volatilities)
+
+    # Convert to NumPy arrays
+    strikes_array = np.array(list(set(strikes)))
+    maturities_array = np.array(list(set(maturities)))
+    vols_array = np.array(vols)
+
+    # Reshape vols_array into a 2D array
+    vols_matrix = vols_array.reshape(len(strikes_array), len(maturities_array))
+
+    # Smooth the volatility surface using 2D interpolation
+    smooth_maturities, smooth_strikes = np.meshgrid(np.linspace(min(maturities_array), max(maturities_array), 25),
+                                                    np.linspace(min(strikes_array), max(strikes_array), 25))
+    smooth_vols = griddata((maturities, strikes), vols, (smooth_maturities, smooth_strikes), method='cubic')
+
+    # Plot the smoothed volatility surface
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection='3d')
+    ax.plot_surface(smooth_maturities, smooth_strikes, smooth_vols, cmap='viridis')
+
+
+    ax.set_xlim(0, max(maturities))  # Adjust the range as needed
+    ax.set_ylim(min(strikes), max(strikes)) # Adjust the range as needed
+    ax.set_zlim(min(vols) - 0.005, max(vols) + 0.005) # Adjust the range as needed
+    ax.set_xlabel('Maturity (Days)')
+    ax.set_ylabel('Strike Price')
+    ax.set_zlabel('Implied Volatility')
+    ax.set_title('Volatility Surface')
+
+    plt.show()</code>
+</pre>
+<h3>Collecting EUR/USD Strikes & Maturities</h3>
+<p>Hard coding in the maturities for EUR/USD from CME Group's Option Chain / Investing.com</p>
+<pre>
+<code class="language-python"># Maturities from CME Group EUR/USD Options Chain
+DTEs = [30 / 365, 60 / 365, 90 / 365, 120 / 365, 150 / 365, 180 / 365, 210 / 365, 240 / 365, 270 / 365, 300 / 365, 330 / 365, 365 / 365, 730 / 365]
+
+# Rounding Maturities
+Ts = [round(x, 3) for x in DTEs]
+
+# Strike Prices for Nov 21st, 2023 from Investing.com on EUR/USD Options
+Ks = [1.04, 1.045, 1.05, 1.055, 1.06, 1.065, 1.070, 1.075, 1.08, 1.085, 1.09, 1.095, 1.1, 1.105, 1.11, 1.115, 1.12, 1.125, 1.13, 1.135]
+
+print(Ts)
+print(Ks)</code>
+</pre>
+<pre>
+<code class="language-python">    
+    # Output
+    DTEs = [0.082, 0.164, 0.247, 0.329, 0.411, 0.493, 0.575, 0.658, 0.74, 0.822, 0.904, 1.0, 2.0]
+    Strikes = [1.04, 1.045, 1.05, 1.055, 1.06, 1.065, 1.07, 1.075, 1.08, 1.085, 1.09, 1.095, 1.1, 1.105, 1.11, 1.115, 1.12, 1.125, 1.13, 1.135]
+</code>
+</pre>
+<h3>Creating list of all option contract possibilities</h3>
+<p></p>
+<pre>
+<code class="language-python">option_prices_calls = {}
+option_prices_puts = {}
+
+# Populating lists with all possible strike and maturities combo
+for K in Ks:
+    for T in Ts:
+        # Calculating the given modeled option price at the given strike and maturity combo for both calls and puts
+        option_prices_calls[(K, T)] = round(garman_kohlhagen(spot, K, T, oneyrUSD, oneyrEUR, sigma, "c"), 3)
+        option_prices_puts[(K, T)] = round(garman_kohlhagen(spot, K, T, oneyrUSD, oneyrEUR, sigma, "p"), 3)
+
+# Convert the dictionary to a list of key-value pairs
+calls = [(key, value) for key, value in option_prices_calls.items()]
+puts = [(key, value) for key, value in option_prices_puts.items()]
+
+# Coverting Call Tuple Dicts into individual lists for Pandas Dataframe
+call_strikes = []
+call_maturities = []
+call_prices = []
+
+# Coverting Put Tuple Dicts into individual lists for Pandas Dataframe
+put_strikes = []
+put_maturities = []
+put_prices = []
+
+for i in calls:
+    call_prices.append(i[1])
+    call_strikes.append(i[0][0])
+    call_maturities.append(i[0][1] * 365)
+
+for i in puts:
+    put_prices.append(i[1])
+    put_strikes.append(i[0][0])
+    put_maturities.append(i[0][1] * 365)
+
+# Building Dataframe for Calls
+call_frame = pd.DataFrame({'Strikes': call_strikes, 'Maturities': call_maturities, 'Call Prices': call_prices})
+call_frame = call_frame.sort_values(by=['Maturities', 'Strikes'])
+
+print(call_frame.head().to_string(index=False) + '\n')
+
+# Building Dataframe for Puts
+put_frame = pd.DataFrame({'Strikes': put_strikes, 'Maturities': put_maturities, 'Put  Prices': put_prices})
+put_frame = put_frame.sort_values(by=['Maturities', 'Strikes'])
+
+print(put_frame.head().to_string(index=False) + '\n')</code>
+</pre>
+<pre>
+<code class="language-python">
+    # Output
+    Strikes  Maturities  Call Prices
+    1.040       29.93        0.052
+    1.045       29.93        0.047
+    1.050       29.93        0.043
+    1.055       29.93        0.038
+    1.060       29.93        0.033
+    
+    Strikes  Maturities  Put  Prices
+    1.040       29.93        0.000
+    1.045       29.93        0.000
+    1.050       29.93        0.000
+    1.055       29.93        0.001
+    1.060       29.93        0.001
+</code>
+</pre>
+<h3>Volatility Surface Construction</h3>
+<pre>
+<code class="language-python"># Calculate through list of option prices at varying strikes and maturities
+implied_volatilities = volatility_smile(option_prices_calls, spot, Ks, Ts, oneyrUSD, oneyrEUR)
+
+# Unzipping into lists for dataframe manipulation
+strikes, maturities, vols = zip(*implied_volatilities)
+
+# Vol surface dataframe
+vol_surface_dataframe = pd.DataFrame({'Strikes': put_strikes, 'Maturities': put_maturities, 'Implied Volatilities': vols})
+vol_surface_dataframe = vol_surface_dataframe.sort_values(by=['Maturities', 'Strikes'])
+print(vol_surface_dataframe.head().to_string())</code>
+</pre>
+<pre>
+<code class="language-python">    
+    # Output
+    Strikes     Maturities     Implied Volatilities
+    1.040           29.93                  0.071168
+    1.045           29.93                  0.071591
+    1.050           29.93                  0.070537
+    1.055           29.93                  0.073857
+    1.060           29.93                  0.071990
+</code>
+</pre>
+<pre>
+<code class="language-python"># Plotting Smile
+plot_volatility_smile(implied_volatilities)</code>
+</pre>
+<img class="size_1" src="../../figures/article/output_39_0.png" alt="">
+<pre>
+<code class="language-python"># Plotting Smile
+plot_volatility_surface(implied_volatilities)</code>
+</pre>
+<img class="size_1" src="../../figures/article/volatility surface.png" alt="">
+
+
       <a href="https://www.linkedin.com/in/jacob-villanueva/">
         <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
       </a>

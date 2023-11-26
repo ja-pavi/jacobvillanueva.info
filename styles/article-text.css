@@ -103,6 +103,10 @@ p {
     margin-top: 0.6rem;
     margin-bottom: 0.6rem;
 }
+
+u {
+  text-decoration: underline;
+}
     
 h1           { font: 500 2.0rem/1.2 "PT Serif"; color: hsl(000, 0%, 0%); }
 h2           { font: 400 1.0rem/1.0 "PT Serif"; color: hsl(000, 0%, 0%); }
@@ -131,3 +135,4 @@ body {
 
 @media (max-width: 8.5in) { :root { font-size: 14px; }}
 @media (max-width: 5in) { :root { font-size: 12px; }}
+

@@ -1,11 +1,16 @@
 .size-1 {
     display: flex;
-    justify-content: center;}
+    justify-content: center;
+}
 .size-2 {grid-column: 3 / 6;}
 .size-3 {grid-column: 2 / 7;}
 .size-4 {grid-column: 1 / 8;}
 
 .size-1, .size-2, .size-3, .size-4 img { width: 100% }
+
+img {
+    margin-bottom: 25px;
+}
 
 figcaption {
     display: flex;
