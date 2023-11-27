@@ -64,7 +64,7 @@
       <h3>Introduction</h3>
       <p><b>Github Repository:</b><a href="https://github.com/ja-pavi/Garman-Kohlhagan-Model"> <u>https://github.com/ja-pavi/Garman-Kohlhagan-Model</u></a></p>
       <p class="has-dropcap"> 
-        Unlike stock options, which use the Black Scholes pricing model, foreign exchange (FX) options most predominantly use the Garman Kohlhagen pricing model instead. Garman Kohlhagen's model is an extension of the Black-Scholes model though now specifically designed for pricing European-style FX options as it considers the impact of interest rate differentials between the two currencies that make up an FX option pair.        
+        Unlike stock options, which use the Black Scholes pricing model, foreign exchange (FX) options most predominantly use the Garman Kohlhagen pricing model instead. Garman Kohlhagen's model is an extension of the Black-Scholes model specifically designed for pricing European-style FX options as it considers the impact of interest rate differentials between the two currencies quoted in an FX option pair.        
       </p>
       <h3>Options Explanation</h3>
       <p>
@@ -72,12 +72,14 @@
       </p>
       <h3>Garman Kohlhagen</h3>
       <p>
-        An interesting problem that surrounds options is how to correctly price them to not allow investors to arbitrage inefficiencies. As stated in the introduction there are multiple models that have been developed over time that have become the standard, most known being the Black Scholes model. The Black Scholes model is used predominantly for stock options, and needs a few adjustments to make it viable for FX options. 
+        An interesting problem that surrounds options is how to correctly price them to not allow investors to arbitrage* inefficiencies. As stated in the introduction there are multiple models that have been developed over time that have become the standard, most known being the Black Scholes model. The Black Scholes model is used predominantly for stock options, and needs a few adjustments to make it viable for FX options. 
       </p>
       <p>
         This is where Garman Kohlhagen’s model looks to fill the gaps by taking into account the differing interest rates that exist in the countries of the currency pairs given in an FX option. Utilizing a similar composition to Black Scholes, we calculate the price of an option through the underlying spot price, risk free rate (both domestically and foreign), time to maturity, and volatility. I have taken the equations that Garman Kohlhagen has done, and put them into Python.
       </p>
-
+      <p><i>* Arbitrage is the simultaneous purchase and sale of the same or similar asset in different markets in order to profit from tiny differences in the asset's listed price (Investopedia, How Arbitraging Works in Investing).</i></p>
+      <h3>Garman Kohlhagen Equations</h3>
+      <p></p>
       <img class="size_1" src="../../figures/article/GKequation.png" alt="">
       <figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
 
@@ -127,7 +129,7 @@ def gkc(S, K, T, rd, rf, sigma):
 def gkp(S, K, T, rd, rf, sigma):
     return K * math.exp(-rd * T) * norm.cdf(-1 * d2(S, K, T, rd, rf, sigma)) - S * math.exp(-rf * T) * norm.cdf(-1 * d1(S, K, T, rd, rf, sigma))</code>
 </pre>
-<p>2) At the start I looked to calculate a singular option price so I looked to gather some historical data on the Euro to USD exchange rate (EUR/USD). Starting by hard coding in both the expiration date and strike price of the FX option I looked to calculate. Though for the spot rate and interest rates, I utilized the Pandas DataReader library to pull live data from the Federal Reserve API. It was here, I was able to pull both the exchange rate of EUR/USD, as well as the U.S. risk free rate (US1Y), and the Euro short-term rate (€STR).</p>
+<p>2) As a start, I looked to pull historical data on the Euro to USD exchange rate (EUR/USD). (KEEP FIXING FROM HERE) Starting by hard coding in both the expiration date and strike price of the FX option contract I looked to calculate. Though for the spot rate and interest rates, I utilized the Pandas DataReader library to pull live data from the Federal Reserve API. It was here, I was able to pull both the exchange rate of EUR/USD, as well as the U.S. risk free rate (US1Y), and the Euro short-term rate (€STR).</p>
 <p>Most of the code snippet below, is me manipuling the Pandas dataframe in order to get today closing price, previous day closing price, and then the daily returns of the spot rate. Then I calculate the expiry date.</p>
 <pre>
 <code class="language-python"># DEXUSEU is U.S. Dollars to Euro Spot Exchange Rate
@@ -230,6 +232,7 @@ print("Historical Volatility:   ", sigma)</code>
 </pre>
 <h3>Volatility Smile Construction Functions</h3>
 <p>The volatility smile is a graphical pattern that shows that implied volatility for the options in question increases as they move away from the current stock or asset price (Sofi, What Is A Volatility Smile?).</p>
+<p>Here in this function, we are taking in a list of GK modeled option prices at varying maturities and expirations, a separate list of strikes and maturities, the two differing interest rates, and the given spot price. With these variables, we are able to take every option price calculated, with their respective strike and maturity, and calculate the implied volatility of the given option. Then we append this implied volatility strike and maturity to a implied volatilities list that will be used for plotting.</p>
 <pre>
 <code class="language-python"># Constructing the volatility smile from the strikes and maturities lists given
 def volatility_smile(option_prices, S, Ks, Ts, rd, rf):
@@ -248,6 +251,7 @@ def volatility_smile(option_prices, S, Ks, Ts, rd, rf):
 
     return implied_volatilities</code>
 </pre>
+<p>Here, we now plot said implied volatilities that we calculated in the previous function to showcase a volatility smile. Here I unpack the tuple passed in, to separate the strikes, maturities, and IVs. I then for loop through every other maturity and plot them against each other as showcased later. Another interesting aspect is the interpolation style I used being cubic, though look to experiment with a couple other methods.</p>
 <pre>
 <code class="language-python">def plot_volatility_smile(implied_volatilities):
     # Unpack implied volatilities tuple
@@ -277,7 +281,8 @@ def volatility_smile(option_prices, S, Ks, Ts, rd, rf):
     plt.show()</code>
 </pre>
 <h3>Plotting the Volatility Surface with Matplotlib</h3>
-<p>The volatility surface refers to a three-dimensional plot of the implied volatilities of the various options listed on the same stock. Implied volatility is used in options pricing to show the expected volatility of the option's underlying stock over the life of the option (Investopedia, Volatility Surface Explained).</p>
+<p>"The volatility surface refers to a three-dimensional plot of the implied volatilities of the various options listed on the same stock. Implied volatility is used in options pricing to show the expected volatility of the option's underlying stock over the life of the option" (Investopedia, Volatility Surface Explained).</p>
+<p>Similar to how we plotted the volatility smile, we now plot the volatility surface across all maturities and strikes. In order to do this, we now plot in 3D over 2D. To start, I similarly unpack the tuple, and create a volatilities 2D array in order to plot it with the ax.plot_surface function. Again I use a smoothing interpolation with a cubic method.</p>
 <pre>
 <code class="language-python">def plot_volatility_surface(implied_volatilities):
     # Extract strikes, maturities, and implied volatilities
@@ -313,7 +318,8 @@ def volatility_smile(option_prices, S, Ks, Ts, rd, rf):
     plt.show()</code>
 </pre>
 <h3>Collecting EUR/USD Strikes & Maturities</h3>
-<p>Hard coding in the maturities for EUR/USD from CME Group's Option Chain / Investing.com</p>
+<p>Here I looked to hard code in the maturities for EUR/USD from CME Group's Option Chain & EUR/USD Options Chain from Investing.com. I understand that typically strikes are not set across differing maturities, though for the sake of the first implementation of the project, I kept them constant.
+</p>
 <pre>
 <code class="language-python"># Maturities from CME Group EUR/USD Options Chain
 DTEs = [30 / 365, 60 / 365, 90 / 365, 120 / 365, 150 / 365, 180 / 365, 210 / 365, 240 / 365, 270 / 365, 300 / 365, 330 / 365, 365 / 365, 730 / 365]
@@ -335,7 +341,7 @@ print(Ks)</code>
 </code>
 </pre>
 <h3>Creating list of all option contract possibilities</h3>
-<p></p>
+<p>In order to plot against all these maturities, we need to create a list of the possible values that an option contract can take across all strikes and maturities. That is why here, I'm looking to calculate the option prices of all contracts at all possible contract combinations. Putting them in a dictionary where each strike, maturity corresponds with the given option price of said contract. This will be useful for calculating our implied volatilities and both of our plotting functions</p>
 <pre>
 <code class="language-python">option_prices_calls = {}
 option_prices_puts = {}
@@ -401,7 +407,8 @@ print(put_frame.head().to_string(index=False) + '\n')</code>
     1.060       29.93        0.001
 </code>
 </pre>
-<h3>Volatility Surface Construction</h3>
+<h3>Output of Plotting the Volatility Smile and Surface</h3>
+<p>Here, I now call the volatility_smile function to calculate our given implied volatilities from our option_prices_calls list, and then pack this into a implied_volatilities list that will be used for plotting.</p>
 <pre>
 <code class="language-python"># Calculate through list of option prices at varying strikes and maturities
 implied_volatilities = volatility_smile(option_prices_calls, spot, Ks, Ts, oneyrUSD, oneyrEUR)
@@ -425,18 +432,26 @@ print(vol_surface_dataframe.head().to_string())</code>
     1.060           29.93                  0.071990
 </code>
 </pre>
+<p>Here we plot the volatility smile of the 30, 60, 90, 120, 150, 180 DTE contracts of the EUR/USD European call option:</p>
 <pre>
 <code class="language-python"># Plotting Smile
 plot_volatility_smile(implied_volatilities)</code>
 </pre>
 <img class="size_1" src="../../figures/article/output_39_0.png" alt="">
+<p>Now we plot the volatility surface of all the maturities and strikes:</p>
 <pre>
 <code class="language-python"># Plotting Smile
 plot_volatility_surface(implied_volatilities)</code>
 </pre>
 <img class="size_1" src="../../figures/article/volatility surface.png" alt="">
-
-
+<h3>Conclusion</h3>
+<p>I'm not yet fully satisfied with this project, as I feel that there is a lot to be improved and expanded on. However, I do believe this work sets a strong foundation on utilizing the Garman Kohlhagan options pricing model in Python, and with the use of Pandas datareader could be a viable way of modeling out both the volatility surface and smile.</p>
+<p>I don't believe that my plotting is up to par through Matplotlib, as I think I should be able to make it all far more accurate with more liquid strikes, maturities instead of keeping them consistent across all contracts. Furthermore, I feel as if I should also expand on the way I'm calculating implied volatility as backsolving the equations doesn't seem to capture the forward-looking aspect that I am looking for. I also believe the smoothing/interpolation process that I use when plotting both the smile and surface should be expiremented with more. I would also love to explore using Interactive Broker's Trading Workstation to pull stronger data on the EUR/USD options chain.
+</p>
+<p>
+With all that said, I am happy with the look of the surface I have been able to output. I know it is flawed, though I accomplished what I set out to do. I look to expand on this work in the coming weeks, as well as add stronger context to the write up to expand on what I'm looking to showcase in the plotting of the given surface. As I get more interested in FX Volatility, I look to explore deeper into these topics.
+</p>
+<h3>Resources</h3>
       <a href="https://www.linkedin.com/in/jacob-villanueva/">
         <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
       </a>
