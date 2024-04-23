@@ -52,19 +52,20 @@
       </box>
     <category>Finance</category>
       <h1>
-        <a>FX Option Pricing with Garman Kohlhagen</a>
+        <a>The Treasury Bond Basis</a>
       </h1>
-      <overview>Using Garman Kohlhagen equations to model volatility surface of EUR/USD Options
+      <overview>Overview of the Bond Basis and how we can trade it, based on Galen Burghardt's the Treasury Bond Basis</overview>
       </overview>
       <h2>
         By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
       </h2>
       <hr>
-      <time>November 25th, 2023</time>
-      <h3>Introduction</h3>
-      <p><b>Github Repository:</b><a href="https://github.com/ja-pavi/Garman-Kohlhagan-Model"> <u>https://github.com/ja-pavi/Garman-Kohlhagan-Model</u></a></p>
+      <time>April 16th, 2024</time>
+      <h3>Over-Simplification of Bond Basis</h3>
       <p class="has-dropcap"> 
-        Unlike stock options, which use the Black Scholes pricing model, foreign exchange (FX) options most predominantly use the Garman Kohlhagen pricing model instead. Garman Kohlhagen's model is an extension of the Black-Scholes model specifically designed for pricing European-style FX options as it considers the impact of interest rate differentials between the two currencies quoted in an FX option pair.        
+        The bond basis is the difference between the spot price of a bond and the futures price of the bond. 
+        Though since all bond's are not the same, we must adjust the bond basis to account for the differing coupon rates, and time to maturity. This is done by dividing the bond basis by the conversion factor of the bond.
+        When the yield curve is positively sloped, holding a bond position for future delivery produces a net income. Also, bonds "throw off a yield" with a coupon income. For these reasons, the bond basis is typically positive, meaning that the spot price of the bond is higher than the futures price.
       </p>
       <h3>Options Explanation</h3>
       <p>
