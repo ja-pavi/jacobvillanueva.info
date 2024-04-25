@@ -255,118 +255,118 @@ Here we built the trader function that would take in a target country, a t value
 <pre>
 <code class="language-python">codes = {}
 def trader(target, t, std):
-data = predictor('multi', target, t)[0]
-name = target
-target = codes[target]
-data['spread'] = data['prediction'] - data[target]
-threshold = data['spread'].std() * std
-data['signal'] = 0
-data.loc[data[target] > data['prediction'] + threshold , 'signal'] = -1
-data.loc[data[target] < data['prediction'] - threshold, 'signal'] = 1
-data['return'] = data[target].diff(1)
-data['signal_return'] = data['return'] * data['signal']
-data['cum_return'] = data['signal_return'].cumsum()
-total_return = round(list(data['cum_return'])[-1], 2)
+    data = predictor('multi', target, t)[0]
+    name = target
+    target = codes[target]
+    data['spread'] = data['prediction'] - data[target]
+    threshold = data['spread'].std() * std
+    data['signal'] = 0
+    data.loc[data[target] > data['prediction'] + threshold , 'signal'] = -1
+    data.loc[data[target] < data['prediction'] - threshold, 'signal'] = 1
+    data['return'] = data[target].diff(1)
+    data['signal_return'] = data['return'] * data['signal']
+    data['cum_return'] = data['signal_return'].cumsum()
+    total_return = round(list(data['cum_return'])[-1], 2)
 
-fig, axs = plt.subplots(1, 2, figsize=(12, 4))
-axs[0].plot(data.index, data['spread'], label='Spread')
-axs[0].axhspan(-threshold, threshold, color='lightblue', alpha=1)
-axs[0].set_ylabel('Prediction - Actual')
-axs[0].set_title(f'{name} Signal Generation')
-axs[1].plot(data.index, data['cum_return'], label='Cumulative Return', color='green')
-axs[1].set_ylabel('Cumulative Return')
-axs[1].set_title(f'{name} Trading Performance')
-date_format = DateFormatter('%Y-%m')
-axs[0].xaxis.set_major_formatter(date_format)
-axs[1].xaxis.set_major_formatter(date_format)
-fig.autofmt_xdate(rotation=45)
-plt.tight_layout()
-plt.show()
-return total_return
+    fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+    axs[0].plot(data.index, data['spread'], label='Spread')
+    axs[0].axhspan(-threshold, threshold, color='lightblue', alpha=1)
+    axs[0].set_ylabel('Prediction - Actual')
+    axs[0].set_title(f'{name} Signal Generation')
+    axs[1].plot(data.index, data['cum_return'], label='Cumulative Return', color='green')
+    axs[1].set_ylabel('Cumulative Return')
+    axs[1].set_title(f'{name} Trading Performance')
+    date_format = DateFormatter('%Y-%m')
+    axs[0].xaxis.set_major_formatter(date_format)
+    axs[1].xaxis.set_major_formatter(date_format)
+    fig.autofmt_xdate(rotation=45)
+    plt.tight_layout()
+    plt.show()
+    return total_return
 
 trader('US', 100, .25)</code>
 </pre>
 <p>Here we see the plot of our trader function for the US, with a t value of 100, and a standard devation of 0.25:</p>
 <img class="size_1" src="../../figures/article/G10/G10_RV_3_0.png" alt="">
-<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<figcaption><p>Fig 1.1: US signal generation over 2020 - 2024, utilizing the standard deviation trading algorithm above, and the performance from trading off the signals</p></figcaption>
 <p>We then plotted the functions returns against the given r2 scores of the prediction model, as seen below. With the red line signifying a negative PnL on our strategies returns.</p>
 <img class="size_1" src="../../figures/article/G10/r2predictive.png" alt="">
-<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
-<h3>Momentum Trading Algorithm</h3>
+<figcaption><p>Fig 1.2: Showcases the r2 score of our linear regression multi prediction model against our updated standard deviation trading strategy returns</p></figcaption>
+<h3>
+  Momentum Trading Algorithm
+</h3>
 <p>
   As seen from our predictive model, there was definitely room for growth on performance, so we were able to build a momentum trading strategy that will take in a target country, a window value, and a standard deviation value. The function will then calculate the moving average and the upper and lower bands of the target countries interest rate. It will then generate a signal based on if the interest rate is above or below the upper and lower bands. If the interest rate is above the upper band, we will go long, and if the interest rate is below the lower band, we will go short. Below is the respective code and plot of our function in action:
 </p>
 <pre>
 <code class="language-python">codes = {}
 def momentum(ticker, window, stds):
-name = ticker
-ticker = codes[ticker]
-data = df[[ticker]].copy()
-data['MA'] = data[ticker].rolling(window).mean()
-data['upper'] = data['MA'] + data[ticker].rolling(window).std() * stds
-data['lower'] = data['MA'] - data[ticker].rolling(window).std() * stds
-data = data.dropna()
-data['signal'] = 0
-data.loc[data[ticker] > data['upper'], 'signal'] = 1
-data.loc[data[ticker] < data['lower'], 'signal'] = -1
-data['signal'] = data['signal'].shift(1)
-data['return'] = data[ticker].diff(1)
-data['signal_return'] = data['return'] * data['signal']
-data['cum_return'] = data['signal_return'].cumsum()
-total_return = round(list(data['cum_return'])[-1], 2)
+    name = ticker
+    ticker = codes[ticker]
+    data = df[[ticker]].copy()
+    data['MA'] = data[ticker].rolling(window).mean()
+    data['upper'] = data['MA'] + data[ticker].rolling(window).std() * stds
+    data['lower'] = data['MA'] - data[ticker].rolling(window).std() * stds
+    data = data.dropna()
+    data['signal'] = 0
+    data.loc[data[ticker] > data['upper'], 'signal'] = 1
+    data.loc[data[ticker] < data['lower'], 'signal'] = -1
+    data['signal'] = data['signal'].shift(1)
+    data['return'] = data[ticker].diff(1)
+    data['signal_return'] = data['return'] * data['signal']
+    data['cum_return'] = data['signal_return'].cumsum()
+    total_return = round(list(data['cum_return'])[-1], 2)
 
-fig, axs = plt.subplots(1, 2, figsize=(12, 4))
-axs[0].plot(data.index[-250:], data[ticker].iloc[-250:], label=ticker, color='blue')
-axs[0].plot(data.index[-250:], data['MA'].iloc[-250:], label='MA', color='black')
-axs[0].plot(data.index[-250:], data['upper'].iloc[-250:], label='Upper Band', linestyle='--', color='red')
-axs[0].plot(data.index[-250:], data['lower'].iloc[-250:], label='Lower Band', linestyle='--', color='green')
-axs[0].set_title(f"{name} Signal Generation (Zoomed)")
-axs[0].legend()
-axs[1].plot(data.index, data['cum_return'], label='Trading Performance', color='green')
-axs[1].set_title(f'{name} Cumulative Return')
-date_format = DateFormatter('%Y-%m')
-axs[0].xaxis.set_major_formatter(date_format)
-axs[1].xaxis.set_major_formatter(date_format)
-fig.autofmt_xdate(rotation=45)
-plt.tight_layout()
-plt.show()
-return total_return
+    fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+    axs[0].plot(data.index[-250:], data[ticker].iloc[-250:], label=ticker, color='blue')
+    axs[0].plot(data.index[-250:], data['MA'].iloc[-250:], label='MA', color='black')
+    axs[0].plot(data.index[-250:], data['upper'].iloc[-250:], label='Upper Band', linestyle='--', color='red')
+    axs[0].plot(data.index[-250:], data['lower'].iloc[-250:], label='Lower Band', linestyle='--', color='green')
+    axs[0].set_title(f"{name} Signal Generation (Zoomed)")
+    axs[0].legend()
+    axs[1].plot(data.index, data['cum_return'], label='Trading Performance', color='green')
+    axs[1].set_title(f'{name} Cumulative Return')
+    date_format = DateFormatter('%Y-%m')
+    axs[0].xaxis.set_major_formatter(date_format)
+    axs[1].xaxis.set_major_formatter(date_format)
+    fig.autofmt_xdate(rotation=45)
+    plt.tight_layout()
+    plt.show()
+    return total_return
 
 momentum('UK', 25, .5)</code>
 </pre>
+<p>The highlight of our momentum trading stragety was New Zealand, who we we're able to achieve around a 10% cumulative return over the given period: </p>
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_17.png" alt="New Zealand">
-<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<figcaption><p>Fig 1.3: Showcases the momentum trading strategy for New Zealand on the left, and on the right the cumulative return of this stragety</p></figcaption>
 <img class="size_1" src="../../figures/article/G10/r2momentum.png" alt="">
-<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
-<h3>Standout returns:</h3>
+<figcaption><p>Fig 1.4: Showcases the r2 score of our linear regression multi prediction model against our updated momentum trading strategy returns</p></figcaption>
+<h3>Plotting Code</h3>
+<p>
+  Here we have the code that will plot the given returns of our trading strategies for each country. We will then plot the mean of these returns to see how our overall portfolio performed.
+</p>
+<pre>
+<code class="language-python">trading = pd.DataFrame()
+trading['Country'] = codes.keys()
+trading['Predictive'] = trading['Country'].apply(lambda x: trader(x, 100, .25))
+trading['Momentum'] = trading['Country'].apply(lambda x: momentum(x, 25, .5))
+trading = trading.set_index('Country')
+trading.loc['Mean'] = round(trading.mean(), 2)</code></pre>
+<h3>Standout Momentum Returns:</h3>
 <p></p>
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_14.png" alt="France">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_16.png" alt="Canada">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_19.png" alt="Switzerland">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_20.png" alt="Norway">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_21.png" alt="Italy">
-<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
-<h3>Predictive Strategy Plots</h3>
-<pre>
-<code class="language-python">trading = pd.DataFrame()
-    trading['Country'] = codes.keys()
-    trading['Predictive'] = trading['Country'].apply(lambda x: trader(x, 100, .25))
-    trading['Momentum'] = trading['Country'].apply(lambda x: momentum(x, 25, .5))
-    trading = trading.set_index('Country')
-    trading.loc['Mean'] = round(trading.mean(), 2)</code>
-</pre>
+<figcaption><p>Fig 1.5: Showcases the plots of the standout returns for the momentum trading strategy for France, Canada, Switzerland, Norway, Italy</p></figcaption>
+<h3>Standout Predictive Returns:</h3>
+<p></p>
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_0.png" alt="">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_1.png" alt="">
-<img class="size_1" src="../../figures/article/G10/G10_RV_5_2.png" alt="">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_3.png" alt="">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_4.png" alt="">
-<img class="size_1" src="../../figures/article/G10/G10_RV_5_5.png" alt="">
-<img class="size_1" src="../../figures/article/G10/G10_RV_5_6.png" alt="">
-<img class="size_1" src="../../figures/article/G10/G10_RV_5_7.png" alt="">
-<img class="size_1" src="../../figures/article/G10/G10_RV_5_8.png" alt="">
-<img class="size_1" src="../../figures/article/G10/G10_RV_5_9.png" alt="">
-<img class="size_1" src="../../figures/article/G10/G10_RV_5_10.png" alt="">
-<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<figcaption><p>Fig 1.6: Showcases the plots of the standout returns for the predictive trading strategy for France, Canada, Switzerland, Norway, Italy</p></figcaption>
 <a href="https://www.linkedin.com/in/jacob-villanueva/">
     <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
   </a>
