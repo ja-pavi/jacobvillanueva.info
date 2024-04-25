@@ -12,6 +12,10 @@ article-highlight {
     width: 50%;
 }
 
+.left img{
+    padding: 1%;
+}
+
 article-highlight h1 {
     margin-top: 0.2em;
     margin-bottom: 0.4em;

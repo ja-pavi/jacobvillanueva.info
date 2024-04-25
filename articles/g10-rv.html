@@ -74,11 +74,14 @@
       </p>
       <h3>Introduction</h3>
       <p class="has-dropcap"> 
-        Pulling data from Bloomberg Terminal, we grabbed 10YR interest rate yields dating back a decade from the US, Canada, Germany, UK, Japan, New Zealand, Norway, Australia, Switzerland, France, and Italy. With this data, we looked to first build a couple different predictor models that would use the interest rate differentials of the other G10 countries to predict a target countries future interest rate movements. Then through testing these models accuracies against each other, we found our best prediction model. We then built a momentum trading strategy around these given predictions. This will be a high-level overview of our project's code and the results we saw.
+        Pulling data from Bloomberg Terminal, we grabbed 10YR interest rate yields dating back a decade and some change from the US, Canada, Germany, UK, Japan, New Zealand, Norway, Australia, Switzerland, France, and Italy. With this data, we looked to first build a couple different predictor models that would make use of these historical 10YR yields of the G10 countries to predict a target countries future interest rate movements. Then through comparing these models accuracies against each other, we found our best prediction model. We then built a momentum trading strategy around these given predictions and plotted our results. This will be a high-level overview of our project's code and the results we saw.
       </p>
 <h3>
 Imports
 </h3>
+<p>
+  For this project, we used a variety of packages to help us with our data manipulation, model building, and plotting. We used pandas for our data manipulation, sklearn for our linear regression model, and tensorflow for our neural network model. We also used matplotlib for our plotting.
+</p>
 <pre>
 <code class="language-python"># Importing Packages
 import pandas as pd
@@ -94,6 +97,9 @@ plt.style.use('ggplot')</code>
 <h3>
 Pulling/Setting our Dataframes
 </h3>
+<p>
+  Here we first set up a dictionary of the different countries and their respective ticker codes. We then read in our data from an excel file and set up a dictionary of dataframes for each country. We then merged these dataframes into one large dataframe and resampled it to fill in any missing data. 
+</p>
 <pre>
 <code class="language-python">codes = {}
 codes['US'] = 'USGG10YR'
@@ -121,6 +127,19 @@ df.iloc[[0,-1],:]</code>
 <h3>
 Multi-Predictor Model & Accuracy Function
 </h3>
+<p>
+  Here we built a function that would take in one of three methods for the predictor model: 
+  <br>
+  <br><b>Simple</b> – which trained a prediction model for one target country against the other countries for a singular t value. In this case, t is representing how many days forward we are predicting. For instance, if we want to predict the US 10YR yield 10 days into the future, we would set t to 10. 
+  <br>
+  <br><b>Multi</b> – which trained a prediction model for one target country against the other countries for multiple t values. In this case, we have a set of t values, where again t is representing how many days forward we are predicting. For instance, if we want to predict the US 10YR yield 1, 5, 10, 25, 50, and 100 days into the future, we would set t to [1,5,10,25,50,100]. This allows us to get more data points for our prediction model, and then make a more educated prediction.
+  <br>
+  <br><b>Neural</b> – Is utilizing tensorflow to model a neural network that utilizes a 
+  which trained a neural network model for one target country against the other countries for a singular t value. First we applied a StandardScaler to normalize the feature sets (training_X and testing_X). This is crucial for neural networks as it ensures that all input features contribute equally to model training by bringing them to a common scale. Then we build a model using the Sequential class from the keras library. Currently, the model consists a dense layer with 64 neurons and ReLU activation function. A couple of dropout layer to prevent overfitting by randomly setting the outgoing edges of hidden units to 0 at each update during training time. Another dense layer with 32 neurons followed by another dropout layer. A final dense layer with 1 neuron to output the prediction. The model uses the Adam optimizer and mean squared error as the loss function. I have looked into hyperparameter tuning and other optimization techniques to improve the model performance, though that code is still in development as we are still learning about the best practices for neural networks.
+  <br>
+  <br> 
+  After selecting the method, target country, and t values the function will then split the data into training and testing sets, fit the model, and then use the given model predict the target country's future interest rate movements over the set of testing X dataset. It will then calculate the r2 score for both the training and testing sets and return the prediction dataframe and the training and testing accuracies. 
+</p>
 <pre>
 <code class="language-python">def predictor(method, target, t):
     data = df.copy()
@@ -205,30 +224,34 @@ def performance(t):
 performance(10)
 </code>
 </pre>
+<p>Here, is our given r2 scores for each country for every model shown against each other. We understand that their is room for improvement within our Neural Network model, though we are still looking into hyperparameter tuning. As you can see within the results, the Multi t prediction model leveraging a LinearRegression model performs quite well. This is the model we will continue moving forward with.</p>
 <pre>
-    <code class="language-python">
-                r2: Simple	r2: Multi	r2: Neural
-    Country			
-    US	            0.80	    0.93	    0.90
-    Germany	        0.92	    0.96	    0.93
-    UK	            0.64	    0.88	    0.80
-    France	        0.97	    0.98	    0.96
-    Australia	    0.74	    0.88	    0.84
-    Canada	        0.77	    0.91	    0.88
-    New Zealand	    0.66	    0.85	    0.81
-    Japan	        0.17	    0.67	    0.61
-    Switzerland	    0.70	    0.87	    0.82
-    Norway	        0.58	    0.81	    0.74
-    Italy	        0.52	    0.80	    0.72
-    Mean	        0.68	    0.87	    0.82
-    </code></pre>
-
-
+<code class="language-python">
+            r2: Simple	r2: Multi	r2: Neural
+Country			
+US	            0.80	    0.93	    0.90
+Germany	        0.92	    0.96	    0.93
+UK	            0.64	    0.88	    0.80
+France	        0.97	    0.98	    0.96
+Australia	    0.74	    0.88	    0.84
+Canada	        0.77	    0.91	    0.88
+New Zealand	    0.66	    0.85	    0.81
+Japan	        0.17	    0.67	    0.61
+Switzerland	    0.70	    0.87	    0.82
+Norway	        0.58	    0.81	    0.74
+Italy	        0.52	    0.80	    0.72
+Mean	        0.68	    0.87	    0.82
+</code></pre>
+<p>Below is an earlier in development graphic of a basic trading strategy where if the actual yield deviated from our prediction yield by a certain threshold, we would go long or short respectively. Here we plotted the r2 score again our final return for this trading strategy. An interesting note with this plot, is that countries like Germany and France, both of which carry the top two r2 scores, though plot wildly different within their final return. When flipping our short and long signals for the countries New Zealand, Norway, Germany, Canada, and UK, we would ultimately get very strong returns for the whole of our portfolio. Though we are still looking into the reasoning behind this.</p>
+</p>
 <img class="size_1" src="../../figures/article/G10/r2plot.png" alt="">
-<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<figcaption><p>Fig 1.0: Showcases the r2 score of our linear regression prediction model against our threshold deviation trading strategy returns</p></figcaption>
 <h3>
 Standard Deviation Trading Algorithm
 </h3>
+<p>
+Here we built the trader function that would take in a target country, a t value, and a standard deviation value. The function would then predict the target countries future interest rate movements using our multi t prediction model. It would then calculate the spread between the prediction and the actual interest rate, and then set a threshold for the spread based on the standard deviation value. If the actual interest rate deviated from the prediction by more than the threshold, we would go long or short respectively. Below is the respective plot of our function in action:
+</p>
 <pre>
 <code class="language-python">codes = {}
 def trader(target, t, std):
@@ -263,9 +286,16 @@ return total_return
 
 trader('US', 100, .25)</code>
 </pre>
+<p>Here we see the plot of our trader function for the US, with a t value of 100, and a standard devation of 0.25:</p>
 <img class="size_1" src="../../figures/article/G10/G10_RV_3_0.png" alt="">
 <figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<p>We then plotted the functions returns against the given r2 scores of the prediction model, as seen below. With the red line signifying a negative PnL on our strategies returns.</p>
+<img class="size_1" src="../../figures/article/G10/r2predictive.png" alt="">
+<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
 <h3>Momentum Trading Algorithm</h3>
+<p>
+  As seen from our predictive model, there was definitely room for growth on performance, so we were able to build a momentum trading strategy that will take in a target country, a window value, and a standard deviation value. The function will then calculate the moving average and the upper and lower bands of the target countries interest rate. It will then generate a signal based on if the interest rate is above or below the upper and lower bands. If the interest rate is above the upper band, we will go long, and if the interest rate is below the lower band, we will go short. Below is the respective code and plot of our function in action:
+</p>
 <pre>
 <code class="language-python">codes = {}
 def momentum(ticker, window, stds):
@@ -304,14 +334,19 @@ return total_return
 
 momentum('UK', 25, .5)</code>
 </pre>
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_17.png" alt="New Zealand">
+<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<img class="size_1" src="../../figures/article/G10/r2momentum.png" alt="">
+<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<h3>Standout returns:</h3>
+<p></p>
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_14.png" alt="France">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_16.png" alt="Canada">
-<img class="size_1" src="../../figures/article/G10/G10_RV_5_17.png" alt="New Zealand">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_19.png" alt="Switzerland">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_20.png" alt="Norway">
 <img class="size_1" src="../../figures/article/G10/G10_RV_5_21.png" alt="Italy">
 <figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
-<h3>Plots</h3>
+<h3>Predictive Strategy Plots</h3>
 <pre>
 <code class="language-python">trading = pd.DataFrame()
     trading['Country'] = codes.keys()
