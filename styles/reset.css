@@ -3,7 +3,7 @@ body {
 }
 
 body * {
-    margin:          unset;
+    margin:          0;
     box-sizing:      unset;
     padding:         unset;
     font-size:       unset;

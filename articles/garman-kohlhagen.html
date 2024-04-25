@@ -50,7 +50,7 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
       </box>
-    <category>Finance</category>
+    <category>Programming Project</category>
       <h1>
         <a>FX Option Pricing with Garman Kohlhagen</a>
       </h1>
@@ -129,7 +129,7 @@ def gkc(S, K, T, rd, rf, sigma):
 def gkp(S, K, T, rd, rf, sigma):
     return K * math.exp(-rd * T) * norm.cdf(-1 * d2(S, K, T, rd, rf, sigma)) - S * math.exp(-rf * T) * norm.cdf(-1 * d1(S, K, T, rd, rf, sigma))</code>
 </pre>
-<p>2) As a start, I looked to pull historical data on the Euro to USD exchange rate (EUR/USD). (KEEP FIXING FROM HERE) Starting by hard coding in both the expiration date and strike price of the FX option contract I looked to calculate. Though for the spot rate and interest rates, I utilized the Pandas DataReader library to pull live data from the Federal Reserve API. It was here, I was able to pull both the exchange rate of EUR/USD, as well as the U.S. risk free rate (US1Y), and the Euro short-term rate (€STR).</p>
+<p>2) As a start, I looked to pull historical data on the Euro to USD exchange rate (EUR/USD). Starting by hard coding in both the expiration date and strike price of the FX option contract I looked to calculate. Though for the spot rate and interest rates, I utilized the Pandas DataReader library to pull live data from the Federal Reserve API. It was here, I was able to pull both the exchange rate of EUR/USD, as well as the U.S. risk free rate (US1Y), and the Euro short-term rate (€STR).</p>
 <p>Most of the code snippet below, is me manipuling the Pandas dataframe in order to get today closing price, previous day closing price, and then the daily returns of the spot rate. Then I calculate the expiry date.</p>
 <pre>
 <code class="language-python"># DEXUSEU is U.S. Dollars to Euro Spot Exchange Rate

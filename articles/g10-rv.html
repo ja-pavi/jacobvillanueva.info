@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/-debug.css">
+    <link rel="stylesheet" href="/styles/article-image.css">
+    <link rel="stylesheet" href="/styles/article-figure.css">
+    <link rel="stylesheet" href="/styles/article-text.css">
+    <link rel="stylesheet" href="/styles/article.css">
+    <link rel="stylesheet" href="/styles/article-highlight.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="stylesheet" href="/styles/prism.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+
+  <script>
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    function openNav() {
+      if (screen.width >= 1450) {
+        document.getElementById("mySidenav").style.width = "100%";
+      } else if (screen.width < 1450) {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+  <script src="/prism.js"></script>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="../../about.html">About</a>
+    <a href="../../index.html">Articles</a>
+    <!-- <a href="../../blogs.html">Blogs</a> -->
+    <!-- <a href="index.html">Projects</a> -->
+  </div>
+  <body id="main">
+    <article>
+      <box class="container" onclick="openNav()">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </box>
+    <category>Programming Project</category>
+      <h1>
+        <a>G10 Interest Rates Relative Value Strategy</a>
+      </h1>
+      <overview>I worked with Nate Gruenwald, Dan Sabra, and Chase Stapleton to create a relative value strategy that trades on the 10YR yield differentials between G10 countries.</overview>
+      </overview>
+      <h2>
+        Written By <a class = "name" href = "about.html"><strong>Jacob Villanueva</strong></a>
+      </h2>
+      <hr>
+      <time>April 24th, 2024</time>
+      <p><b>Github Repository:</b><a href="https://github.com/danjsabra/G10_RV"> <u>https://github.com/danjsabra/G10_RV</u></a></p>
+      <p><b>Group Members:</b></p>
+      <p>
+        <a href="https://www.linkedin.com/in/nathan-gruenwald/"><u>Nate Gruenwald</u></a>
+      </p>
+      <p>
+        <a href="https://www.linkedin.com/in/dansabra/"><u>Dan Sabra</u></a>
+      </p>
+      <p>
+        <a href="https://www.linkedin.com/in/chasestapleton/"><u>Chase Stapleton</u></a>
+      </p>
+      <h3>Introduction</h3>
+      <p class="has-dropcap"> 
+        Pulling data from Bloomberg Terminal, we grabbed 10YR interest rate yields dating back a decade from the US, Canada, Germany, UK, Japan, New Zealand, Norway, Australia, Switzerland, France, and Italy. With this data, we looked to first build a couple different predictor models that would use the interest rate differentials of the other G10 countries to predict a target countries future interest rate movements. Then through testing these models accuracies against each other, we found our best prediction model. We then built a momentum trading strategy around these given predictions. This will be a high-level overview of our project's code and the results we saw.
+      </p>
+<h3>
+Imports
+</h3>
+<pre>
+<code class="language-python"># Importing Packages
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+from matplotlib.dates import DateFormatter
+import tensorflow as tf
+import keras as keras
+plt.style.use('ggplot')</code>
+</pre>
+<h3>
+Pulling/Setting our Dataframes
+</h3>
+<pre>
+<code class="language-python">codes = {}
+codes['US'] = 'USGG10YR'
+codes['Germany'] = 'GDBR10'
+codes['UK'] = 'GUKG10'
+codes['France'] = 'GFRN10'
+codes['Australia'] = 'GACGB10'
+codes['Canada'] = 'GCAN10YR'
+codes['New Zealand'] = 'GNZGB10'
+codes['Japan'] = 'JGBS10'
+codes['Switzerland'] = 'GSWISS10'
+codes['Norway'] = 'GNOR10YR'
+codes['Italy'] = 'GBTPGR10'
+
+sheet_names = pd.ExcelFile('G10_RV.xlsx').sheet_names[:11]
+dfs = {x: pd.read_excel('G10_RV.xlsx', sheet_name=x)[['Date', 'Last Price']].rename(columns={'Last Price': x}) for x in sheet_names}
+df = pd.DataFrame({'Date': dfs[sheet_names[0]]['Date']})  
+
+for key in dfs:
+    df = pd.merge(df, dfs[key], on='Date', how='outer')
+
+df = df.set_index('Date').resample('D').asfreq().ffill().dropna()
+df.iloc[[0,-1],:]</code>
+</pre>
+<h3>
+Multi-Predictor Model & Accuracy Function
+</h3>
+<pre>
+<code class="language-python">def predictor(method, target, t):
+    data = df.copy()
+    target = codes[target]
+    target_t = f'{target}_{t}'
+    ts = [1,5,10,25,50,100]
+
+    for x in data:
+        for z in ts:
+            data[f'{x}_{z}'] = df[x].diff(z)
+
+    data = data.dropna()
+    cutoff = '2020-1-1'
+    training = data[data.index < cutoff]
+    testing = data[data.index > cutoff]
+
+    if method == 'simple' or method == 'multi':
+        if method == 'simple':
+            training_X = training[[x for x in training if x.endswith(f'_{t}') and not x.startswith(target)]]
+            training_y = training[target_t]
+            testing_X = testing[[x for x in testing if x.endswith(f'_{t}') and not x.startswith(target)]]
+            testing_y = testing[target_t]
+        if method == 'multi':
+            training_X = training[[x for x in training if '_' in x and x != target_t]]
+            training_y = training[target_t]
+            testing_X = testing[[x for x in testing if '_' in x and x != target_t]]
+            testing_y = testing[target_t]
+    
+        model = LinearRegression()
+        model.fit(training_X, training_y)
+        training_prediction = model.predict(training_X)
+        testing_prediction = model.predict(testing_X)
+        training_accuracy = round(r2_score(training_y, training_prediction), 2)
+        testing_accuracy = round(r2_score(testing_y, testing_prediction), 2)
+        prediction = pd.DataFrame(testing[target].copy())
+        prediction['c_prediction'] = testing_prediction
+        prediction['prediction'] = prediction[target].shift(t) + prediction['c_prediction']
+        prediction = prediction[[target, 'prediction']].dropna()
+        return prediction, training_accuracy, testing_accuracy
+    
+    elif method == 'neural':
+        training_X = training[[x for x in training if '_' in x and x != target_t]]
+        training_y = training[target_t]
+        testing_X = testing[[x for x in testing if '_' in x and x != target_t]]
+        testing_y = testing[target_t]
+        scaler = StandardScaler()
+        training_X = scaler.fit_transform(training_X)
+        testing_X = scaler.transform(testing_X)
+        model = tf.keras.models.Sequential([
+                tf.keras.layers.Dense(64, activation='relu', input_shape=[training_X.shape[1]]),
+                tf.keras.layers.Dropout(0.3),
+                tf.keras.layers.Dense(32, activation='relu'),
+                tf.keras.layers.Dropout(0.3),
+                tf.keras.layers.Dense(1)
+        ])
+        model.compile(optimizer='adam', loss='mean_squared_error')
+        early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=20)
+        model.fit(training_X, training_y, epochs=200, validation_split=0.2, callbacks=[early_stopping])
+        training_prediction = model.predict(training_X)
+        testing_prediction = model.predict(testing_X)
+        training_accuracy = round(r2_score(training_y, training_prediction), 2)
+        testing_accuracy = round(r2_score(testing_y, testing_prediction), 2)
+        prediction = pd.DataFrame(testing[target].copy())
+        prediction['c_prediction'] = testing_prediction
+        prediction['prediction'] = prediction[target].shift(t) + prediction['c_prediction']
+        prediction = prediction[[target, 'prediction']].dropna()
+        return prediction, training_accuracy, testing_accuracy
+
+def performance(t):
+    performances = pd.DataFrame()
+    performances['Country'] = codes.keys()
+    performances['r2: Simple'] = performances['Country'].apply(lambda x: predictor('simple', x, t)[2])
+    performances['r2: Multi'] = performances['Country'].apply(lambda x: predictor('multi', x, t)[2])
+    performances['r2: Neural'] = performances['Country'].apply(lambda x: predictor('neural', x, t)[2])
+    performances = performances.set_index('Country')
+    simple_mean = round(performances['r2: Simple'].mean(), 2)
+    multi_mean = round(performances['r2: Multi'].mean(), 2)
+    nn_mean = round(performances['r2: Neural'].mean(), 2)
+    performances.loc['Mean'] = {'r2: Simple': simple_mean, 'r2: Multi': multi_mean}
+    return performances
+
+performance(10)
+</code>
+</pre>
+<pre>
+    <code class="language-python">
+                r2: Simple	r2: Multi	r2: Neural
+    Country			
+    US	            0.80	    0.93	    0.90
+    Germany	        0.92	    0.96	    0.93
+    UK	            0.64	    0.88	    0.80
+    France	        0.97	    0.98	    0.96
+    Australia	    0.74	    0.88	    0.84
+    Canada	        0.77	    0.91	    0.88
+    New Zealand	    0.66	    0.85	    0.81
+    Japan	        0.17	    0.67	    0.61
+    Switzerland	    0.70	    0.87	    0.82
+    Norway	        0.58	    0.81	    0.74
+    Italy	        0.52	    0.80	    0.72
+    Mean	        0.68	    0.87	    0.82
+    </code></pre>
+
+
+<img class="size_1" src="../../figures/article/G10/r2plot.png" alt="">
+<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<h3>
+STD Trading Algorithm
+</h3>
+<pre>
+<code class="language-python">codes = {}
+def trader(target, t, std):
+data = predictor('multi', target, t)[0]
+name = target
+target = codes[target]
+data['spread'] = data['prediction'] - data[target]
+threshold = data['spread'].std() * std
+data['signal'] = 0
+data.loc[data[target] > data['prediction'] + threshold , 'signal'] = -1
+data.loc[data[target] < data['prediction'] - threshold, 'signal'] = 1
+data['return'] = data[target].diff(1)
+data['signal_return'] = data['return'] * data['signal']
+data['cum_return'] = data['signal_return'].cumsum()
+total_return = round(list(data['cum_return'])[-1], 2)
+
+fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+axs[0].plot(data.index, data['spread'], label='Spread')
+axs[0].axhspan(-threshold, threshold, color='lightblue', alpha=1)
+axs[0].set_ylabel('Prediction - Actual')
+axs[0].set_title(f'{name} Signal Generation')
+axs[1].plot(data.index, data['cum_return'], label='Cumulative Return', color='green')
+axs[1].set_ylabel('Cumulative Return')
+axs[1].set_title(f'{name} Trading Performance')
+date_format = DateFormatter('%Y-%m')
+axs[0].xaxis.set_major_formatter(date_format)
+axs[1].xaxis.set_major_formatter(date_format)
+fig.autofmt_xdate(rotation=45)
+plt.tight_layout()
+plt.show()
+return total_return
+
+trader('US', 100, .25)</code>
+</pre>
+<img class="size_1" src="../../figures/article/G10/G10_RV_3_0.png" alt="">
+<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<h3>Momentum Trading Algorithm</h3>
+<pre>
+<code class="language-python">codes = {}
+def momentum(ticker, window, stds):
+name = ticker
+ticker = codes[ticker]
+data = df[[ticker]].copy()
+data['MA'] = data[ticker].rolling(window).mean()
+data['upper'] = data['MA'] + data[ticker].rolling(window).std() * stds
+data['lower'] = data['MA'] - data[ticker].rolling(window).std() * stds
+data = data.dropna()
+data['signal'] = 0
+data.loc[data[ticker] > data['upper'], 'signal'] = 1
+data.loc[data[ticker] < data['lower'], 'signal'] = -1
+data['signal'] = data['signal'].shift(1)
+data['return'] = data[ticker].diff(1)
+data['signal_return'] = data['return'] * data['signal']
+data['cum_return'] = data['signal_return'].cumsum()
+total_return = round(list(data['cum_return'])[-1], 2)
+
+fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+axs[0].plot(data.index[-250:], data[ticker].iloc[-250:], label=ticker, color='blue')
+axs[0].plot(data.index[-250:], data['MA'].iloc[-250:], label='MA', color='black')
+axs[0].plot(data.index[-250:], data['upper'].iloc[-250:], label='Upper Band', linestyle='--', color='red')
+axs[0].plot(data.index[-250:], data['lower'].iloc[-250:], label='Lower Band', linestyle='--', color='green')
+axs[0].set_title(f"{name} Signal Generation (Zoomed)")
+axs[0].legend()
+axs[1].plot(data.index, data['cum_return'], label='Trading Performance', color='green')
+axs[1].set_title(f'{name} Cumulative Return')
+date_format = DateFormatter('%Y-%m')
+axs[0].xaxis.set_major_formatter(date_format)
+axs[1].xaxis.set_major_formatter(date_format)
+fig.autofmt_xdate(rotation=45)
+plt.tight_layout()
+plt.show()
+return total_return
+
+momentum('UK', 25, .5)</code>
+</pre>
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_14.png" alt="France">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_16.png" alt="Canada">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_17.png" alt="New Zealand">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_19.png" alt="Switzerland">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_20.png" alt="Norway">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_21.png" alt="Italy">
+<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<h3>Plots</h3>
+<pre>
+<code class="language-python">trading = pd.DataFrame()
+    trading['Country'] = codes.keys()
+    trading['Predictive'] = trading['Country'].apply(lambda x: trader(x, 100, .25))
+    trading['Momentum'] = trading['Country'].apply(lambda x: momentum(x, 25, .5))
+    trading = trading.set_index('Country')
+    trading.loc['Mean'] = round(trading.mean(), 2)</code>
+</pre>
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_0.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_1.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_2.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_3.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_4.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_5.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_6.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_7.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_8.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_9.png" alt="">
+<img class="size_1" src="../../figures/article/G10/G10_RV_5_10.png" alt="">
+<figcaption><p>Fig 1.0: Showcases the Garman Kohlhagen equations for both call and put options, as well as the d1 and d2 equations used to calculate them</p></figcaption>
+<a href="https://www.linkedin.com/in/jacob-villanueva/">
+    <img class = "center" src="../../figures/headshot/headshot.png" style="width:100px;height:auto;"></img>
+  </a>
+</article>
+</body>
