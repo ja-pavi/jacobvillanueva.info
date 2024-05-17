@@ -3,7 +3,7 @@ article {
 
     display: grid;
     
-    grid-template-columns: 0.5in 1fr [start] 1.25in 7in 1.25in [end] 1fr 0.5in [page];
+    grid-template-columns: 0.5in 1fr [start] 0.5in 7in 0.5in [end] 1fr 0.5in [page];
 
     padding-bottom: 4em;
   }
